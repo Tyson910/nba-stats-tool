@@ -1,22 +1,46 @@
-import logo from './logo.svg';
+
 import './App.css';
+import PlayerSearch from './PlayerSearch'
+
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css"
+
+const DateRange = () => {
+  const [startDate, setStartDate] = useState( null );
+  const [endDate, setEndDate] = useState( new Date());
+  return (
+    <>
+      <div>Start date</div>
+      <DatePicker
+        selected={startDate}
+        onChange={date => setStartDate(date)}
+        selectsStart
+        startDate={startDate}
+        endDate={endDate}
+      />
+      <div>End date</div>
+      <DatePicker
+        selected={endDate}
+        onChange={date => setEndDate(date)}
+        selectsEnd
+        startDate={startDate}
+        endDate={endDate}
+        maxDate={new Date() }
+        minDate={startDate}
+      />
+      <PlayerSearch />
+    </>
+  );
+};
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>Hey</div>
+        <DateRange />
       </header>
     </div>
   );
