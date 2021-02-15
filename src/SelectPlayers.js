@@ -1,14 +1,17 @@
-import React, {useState, useEffect } from 'react';
-// import PlayerCheckbox from './PlayerCheckbox';
-
+import React, {useState} from 'react';
 
 export default function SelectPlayers({playerSearchResults}){
 
-    const [selectedPlayers, setselectedPlayers] = useState('');
+    const [selectedPlayers, setselectedPlayers] = useState([ ]);
 
     const handleChange = (evt) => {
-        console.log(evt.target.value)
-        setselectedPlayers(evt.target.value)
+        if (evt.target.checked){
+            setselectedPlayers( oldSelectedPlayers => [...oldSelectedPlayers , (evt.target.value) ]  )
+        }
+        else{
+            //returns array after removing players name after checkbox unchecked
+            setselectedPlayers( selectedPlayers.filter(playerID => playerID !== evt.target.value) ) ;
+        }
     }
 
     if (playerSearchResults){
@@ -17,7 +20,7 @@ export default function SelectPlayers({playerSearchResults}){
                 <PlayerCheckbox key={player.id} first_name={player.first_name}  
                 id={player.id} last_name={player.last_name} teamAbbr={player.team.abbreviation} 
                 position = {player.position}  
-                onSChange = {(e) => handleChange(e)} /> ))}
+                onCheckChange = {(e) => handleChange(e)} /> ))}
         </form>
     }
     else{
@@ -26,15 +29,13 @@ export default function SelectPlayers({playerSearchResults}){
 
 }
 
-function PlayerCheckbox({id, first_name, last_name, position, teamAbbr, onSChange}){
+function PlayerCheckbox({id, first_name, last_name, position, teamAbbr, onCheckChange}){
 
     return(
-        
-    <label key={id} >
-        <input type='checkbox'  value={id} onChange= { (e) => onSChange(e)} />
-        {first_name} {last_name} || {position} {teamAbbr}
-    </label>
-
+        <label >
+            <input type='checkbox'  value={id} onChange= { (e) => onCheckChange(e)} />
+            {first_name} {last_name} || {position} {teamAbbr}
+        </label>
     )
 }
 
