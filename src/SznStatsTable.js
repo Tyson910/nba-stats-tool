@@ -63,10 +63,10 @@ function SznStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm,
             <td>{(fg_pct * 100).toFixed(1)} </td>
             <td>{fg3m}</td>
             <td>{fg3a}</td>
-            <td>{fg3_pct}</td>
+            <td>{(fg3_pct * 100).toFixed(1)}</td>
             <td>{ftm}</td>
             <td>{fta}</td>
-            <td>{ft_pct}</td>
+            <td>{(ft_pct * 100).toFixed(1)}</td>
             <td>{getFantasyScore().toFixed(1)}</td>
         </tr>
     </tbody>
