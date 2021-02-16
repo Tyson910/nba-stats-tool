@@ -7,3 +7,9 @@ body{
   color: ghostwhite;
   font-size: large;
 }
+
+.pure-table {
+  display:block;
+  width: 100vw;
+  overflow: scroll;
+}

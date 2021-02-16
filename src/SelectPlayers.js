@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import SznStats from './SznStats';
+import DateRange from './DateRange';
 
 export default function SelectPlayers({playerSearchResults}){
 
@@ -45,6 +46,7 @@ export default function SelectPlayers({playerSearchResults}){
                 onCheckChange = {(e) => handleChange(e)} /> ))}
         </form>
         {showSznTables()}
+        <DateRange player='161-John-Doe' />
         </>
         )
     }
