@@ -9,26 +9,32 @@ export default function SznStats({player}){
 //[2] is last name
 
     const [sznStats, setSznStats] = useState('');
-    //const {loading, setLoading} = useState(false);
+    const [loading, setLoading] = useState(false);
 
     //fetches player info then adds it to state
     async function fetchSznStats(){
+        setLoading(true);
+
         var API = "https://www.balldontlie.io/api/v1/season_averages?player_ids[]=";
 
         let playerID = player.split("-")[0];
         let response = await fetch(API + playerID);
         let resultObj = await response.json();
         var dataArray = resultObj.data;
-        setSznStats(dataArray[0]);   
+        setSznStats(dataArray[0]); 
+        setLoading(false);  
     }
 
         useEffect(() => {
             fetchSznStats()
         }, [] )
 
-        if(sznStats){
+        if(sznStats && !loading){
             return <SznStatsTable first_name={player.split("-")[1]} 
             last_name={player.split("-")[2]} stats={sznStats} />
+        }
+        if(loading){
+            return <div>Loading plz give it a second :)</div>
         }
         else{
             return <div>Sorry {player.split("-")[1]} {player.split("-")[2]} 

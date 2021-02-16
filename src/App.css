@@ -2,3 +2,8 @@ body{
   background-color: #282c34;
   color: ghostwhite;
 }
+
+.pure-table caption{
+  color: ghostwhite;
+  font-size: large;
+}

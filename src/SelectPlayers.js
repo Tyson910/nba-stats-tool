@@ -18,7 +18,7 @@ export default function SelectPlayers({playerSearchResults}){
     if (selectedPlayers.length){
         return (
         <>
-            {selectedPlayers.map( (player)=>  <SznStats player={player} /> )}
+            {selectedPlayers.map( (player)=>  <SznStats key={player} player={player} /> )}
         </>
         )}
  }
