@@ -15,24 +15,24 @@ export default function SelectPlayers({playerSearchResults}){
             setselectedPlayers( selectedPlayers.filter(playerID => playerID !== evt.target.value) ) ;
         }
     }
- function showSznTables(){
-    if (selectedPlayers.length){
-        return (
-        <>
-            {selectedPlayers.map( (player)=>  <SznStats key={player} player={player} /> )}
-        </>
-        )}
- }
-
- function playerNumLimit(evt){
-     if (selectedPlayers.length === 5){
-         alert("no more")
-         evt.target.checked = false;
-     }
-     else if ( selectedPlayers.length < 6) {
-        setselectedPlayers( oldSelectedPlayers => [...oldSelectedPlayers , (evt.target.value) ]  ); 
-     }
- }
+    function showSznTables(){
+        if (selectedPlayers.length){
+            return (
+            <>
+                {selectedPlayers.map( (player)=>  <SznStats key={player} player={player} /> )}
+            </>
+            )}
+    }
+//limits selected player to 5
+    function playerNumLimit(evt){
+        if (selectedPlayers.length === 5){
+            alert("no more")
+            evt.target.checked = false;
+        }
+        else if ( selectedPlayers.length < 6) {
+            setselectedPlayers( oldSelectedPlayers => [...oldSelectedPlayers , (evt.target.value) ]  ); 
+        }
+    }
 
 
     if (playerSearchResults){

@@ -6,22 +6,21 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default function DateRange({player}){
     const [startDate, setStartDate] = useState( null );
-    const [endDate, setEndDate] = useState( new Date());
-
-
+    const [endDate, setEndDate] = useState( null );
+if( startDate && endDate){
     return (
       <>
         <div>Start date</div>
         <DatePicker
-          dateFormat="yyyy/MM/dd"
           selected={startDate}
-          onChange={date => setStartDate(date)}
+          onChange={date => setStartDate( date )}
           selectsStart
           startDate={startDate}
           endDate={endDate}
         />
         <div>End date</div>
         <DatePicker
+          selected={endDate}
           onChange={date => setEndDate(date)}
           selectsEnd
           startDate={startDate}
@@ -32,4 +31,32 @@ export default function DateRange({player}){
   <RecentStats player={player} start_date={startDate} end_date={endDate} />
       </>
     );
-  };
+    }
+    else{
+    return (
+      <>
+        <div>Start date</div>
+        <DatePicker
+          placeholderText="MM-DD-YYYY"
+          selected={startDate}
+          onChange={date => setStartDate( date )}
+          selectsStart
+          startDate={startDate}
+          endDate={endDate}
+        />
+        <div>End date</div>
+        <DatePicker
+          placeholderText="MM-DD-YYYY"
+          selected={endDate}
+          onChange={date => setEndDate(date)}
+          selectsEnd
+          startDate={startDate}
+          endDate={endDate}
+          maxDate={new Date() }
+          minDate={startDate}
+        />
+      </>
+    );
+  }
+
+  }
