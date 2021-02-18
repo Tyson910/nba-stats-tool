@@ -4,7 +4,7 @@ import React from 'react';
 export default function RecentStatsTable({first_name, last_name, start_date, end_date, statsArray}){
 
     return (
-        <table className='pure-table'>
+        <table className='pure-table pure-table-bordered pure-table-striped'>
 
             <caption>
                 <p>{first_name} {last_name}</p> 
@@ -14,6 +14,7 @@ export default function RecentStatsTable({first_name, last_name, start_date, end
             <thead>
                 <tr>
                     <th scope='col'>Game Date</th>
+                    <th scope='col'>Min</th>
                     <th scope='col'>Pts</th>
                     <th scope='col'>Reb</th>
                     <th scope='col'>Assists</th>
@@ -29,7 +30,7 @@ export default function RecentStatsTable({first_name, last_name, start_date, end
                     <th scope='col'>FTM</th>
                     <th scope='col'>FTA</th>
                     <th scope='col'>FT(%) </th>
-                    <th scope='col'>Fantasy Points</th>
+                    <th scope='col'>Fantasy</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,7 +42,15 @@ export default function RecentStatsTable({first_name, last_name, start_date, end
 }
 
 function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm, 
-    fta, ft_pct, fg3a, fg3m, fg3_pct, pts, reb, stl, game, turnover}){
+    fta, ft_pct, fg3a, fg3m, fg3_pct, pts, reb, stl, game, turnover, min}){
+
+        let prettyGameDate = () => {
+            let newDate = game.date.slice(0,10).split("-");
+            return newDate[1] + '-' + newDate[2] +  '-' + newDate[0]
+        }
+        if(!min){
+            min = "DNP";
+        }
 
         function getFantasyScore(){
             let total = (fgm - fga) + (ftm - fta) + (ast - turnover ) + (reb + stl + blk + pts);
@@ -49,7 +58,8 @@ function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm,
         }
         return (
         <tr key={game.date}>
-            <td>{game.date}</td>
+            <td>{prettyGameDate()}</td>
+            <td>{min}</td>
             <td>{pts}</td>
             <td>{reb}</td>
             <td>{ast}</td>
@@ -58,13 +68,13 @@ function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm,
             <td>{turnover}</td>
             <td>{fgm}</td>
             <td>{fga}</td>
-            <td>{(fg_pct * 100)} </td>
+            <td>{fg_pct} </td>
             <td>{fg3m}</td>
             <td>{fg3a}</td>
-            <td>{(fg3_pct * 100)}</td>
+            <td>{fg3_pct }</td>
             <td>{ftm}</td>
             <td>{fta}</td>
-            <td>{(ft_pct * 100)}</td>
+            <td>{ft_pct}</td>
             <td>{getFantasyScore()}</td>
         </tr>
         )

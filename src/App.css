@@ -13,3 +13,7 @@ body{
   width: 100vw;
   overflow: scroll;
 }
+
+.pure-table-striped tr:nth-child(2n-1) td {
+  background-color: black;
+}

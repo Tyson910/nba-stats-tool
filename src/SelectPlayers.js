@@ -46,7 +46,7 @@ export default function SelectPlayers({playerSearchResults}){
                 onCheckChange = {(e) => handleChange(e)} /> ))}
         </form>
         {showSznTables()}
-        <DateRange player='161-John-Doe' />
+        <DateRange playerArray={selectedPlayers} />
         </>
         )
     }

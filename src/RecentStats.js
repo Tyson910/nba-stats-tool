@@ -9,15 +9,7 @@ export default function SznStats({player, start_date, end_date}){
 //[1] is first name
 //[2] is last name
 //create startDatePretty and startDateAPI
-/*
 
-<RecentStatsTable statsArray={stats} 
-first_name={player.split("-")[1]} last_name={player.split("-")[2]} />
-map thru stats array and create new row w each game
-<RecentStatsTableBody stats = {statsArray} />
-
-
-*/
 
     //returns date in 'YYYY-MM-DD' numerical format for API reference
     function createAPIDate( uglyDate ){
@@ -45,8 +37,8 @@ map thru stats array and create new row w each game
         let response = await fetch(API + playerID);
         let resultObj = await response.json();
         var dataArray = resultObj.data;
-        console.log(dataArray);
-        setStats(dataArray); 
+        //sorts games by date in ascending order
+        setStats(dataArray.sort( (a,b) => new Date(a.game.date) - new Date(b.game.date) )); 
         setLoading(false);  
     }
 }
@@ -63,7 +55,8 @@ map thru stats array and create new row w each game
         else if( stats ){
             return (
                 <RecentStatsTable statsArray={stats} 
-                first_name={player.split("-")[1]} last_name={player.split("-")[2]} />
+                first_name={player.split("-")[1]} last_name={player.split("-")[2]}
+                start_date = {createPrettyDate(start_date)} end_date = {createPrettyDate(end_date)} />
             )
         }
         else{

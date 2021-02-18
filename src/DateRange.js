@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 
-export default function DateRange({player}){
+export default function DateRange({playerArray}){
     const [startDate, setStartDate] = useState( null );
     const [endDate, setEndDate] = useState( null );
 if( startDate && endDate){
@@ -28,7 +28,7 @@ if( startDate && endDate){
           maxDate={new Date() }
           minDate={startDate}
         />
-  <RecentStats player={player} start_date={startDate} end_date={endDate} />
+  {playerArray.map( (player) => <RecentStats key={player + startDate} player={player} start_date={startDate} end_date={endDate} /> )}
       </>
     );
     }
