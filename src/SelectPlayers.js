@@ -21,6 +21,14 @@ export default function SelectPlayers({playerSearchResults}){
             return (
             <>
                 <SznStatsHead playerArray={selectedPlayers} />
+
+                <nav><ul>
+                {selectedPlayers.map( (player) => ( 
+                        <PlayerListItem key={player} id={player.split('-')[0]} 
+                        first_name={player.split('-')[1]}  last_name={player.split('-')[2]} 
+                        position = {player.split('-')[3]} teamAbbr={player.split('-')[4]} 
+                        onClickChange = {(e) => handleChange(e)} /> ))}
+                </ul></nav>
             </>
             )}
     }
@@ -39,6 +47,8 @@ export default function SelectPlayers({playerSearchResults}){
     if (playerSearchResults){
         return (
         <>
+
+
         <form className="pure-form pure-form-stacked">
             {playerSearchResults.map( (player) => ( 
                 <PlayerCheckbox key={player.id} first_name={player.first_name}  
@@ -61,20 +71,21 @@ function PlayerCheckbox({id, first_name, last_name, position, teamAbbr, onCheckC
 
         return(
             <label >
-                <input type='checkbox'  value={id + '-' + first_name + '-' +last_name} onChange= { (e) => onCheckChange(e)} />
+                <input type='checkbox'  value={id + '-' + first_name + '-' +last_name + '-' + position + '-' + teamAbbr}  
+                onChange= { (e) => onCheckChange(e)} />
                 {first_name} {last_name} - {teamAbbr} {position}
             </label>
         )
     
 }
 
-/*
-    function showSznTables(){
-        if (selectedPlayers.length){
-            return (
-            <>
-                {selectedPlayers.map( (player)=>  <SznStats key={player} player={player} /> )}
-            </>
-            )}
-    }
-*/
+function PlayerListItem({id, first_name, last_name, position, teamAbbr, onClickChange}){
+
+    return(
+        <li>
+        {first_name} {last_name}  - {teamAbbr} {position} 
+            <span className="close" onClick = { () => console.log(id + '-' + first_name + '-' +last_name)}> x </span>
+        </li>
+
+    )
+}
