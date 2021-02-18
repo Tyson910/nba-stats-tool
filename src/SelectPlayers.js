@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import SznStats from './SznStats';
 import DateRange from './DateRange';
+import SznStatsHead from './SznStatsTable';
 
 export default function SelectPlayers({playerSearchResults}){
 
@@ -19,7 +20,7 @@ export default function SelectPlayers({playerSearchResults}){
         if (selectedPlayers.length){
             return (
             <>
-                {selectedPlayers.map( (player)=>  <SznStats key={player} player={player} /> )}
+                <SznStatsHead playerArray={selectedPlayers} />
             </>
             )}
     }
@@ -67,3 +68,13 @@ function PlayerCheckbox({id, first_name, last_name, position, teamAbbr, onCheckC
     
 }
 
+/*
+    function showSznTables(){
+        if (selectedPlayers.length){
+            return (
+            <>
+                {selectedPlayers.map( (player)=>  <SznStats key={player} player={player} /> )}
+            </>
+            )}
+    }
+*/
