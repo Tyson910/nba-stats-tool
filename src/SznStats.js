@@ -1,11 +1,6 @@
 import React, {useState, useEffect} from 'react';
 
 export default function SznStats({player}){
-//props is formatted as "000-first_name-last_name"
-//to access properties we split into array by - and access index number
-//[0] is player id
-//[1] is first name
-//[2] is last name
 
     const [sznStats, setSznStats] = useState('');
     const [loading, setLoading] = useState(false);
@@ -15,9 +10,7 @@ export default function SznStats({player}){
         setLoading(true);
 
         var API = "https://www.balldontlie.io/api/v1/season_averages?player_ids[]=";
-
-        let playerID = player.split("-")[0];
-        let response = await fetch(API + playerID);
+        let response = await fetch(API + player.id);
         let resultObj = await response.json();
         var dataArray = resultObj.data;
         setSznStats(dataArray[0]); 
@@ -26,19 +19,21 @@ export default function SznStats({player}){
 
         useEffect(() => {
             fetchSznStats()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [] )
 
+
         if(sznStats && !loading){
-            return SznStatsRow(sznStats, player.split("-")[1],  player.split("-")[2] )  ;
+            return SznStatsRow(sznStats, player.first_name,  player.last_name )  ;
         }
-        if(loading){
+        else if(loading){
             return <tr><td>Loading plz give it a second :)</td></tr>
         }
         else{
             return <tr><td colSpan='8' rowSpan='2'>
-              Sorry {player.split("-")[1]} {player.split("-")[2]} 
+            Sorry {player.first_name} {player.last_name} 
             2020-21 Stats couldn't be found please try again.  
-            </td> </tr>
+            </td></tr>
         }
 }
 
@@ -52,7 +47,8 @@ function SznStatsRow ({ast, blk, fgm, fga, fg_pct ,ftm, fta, ft_pct, fg3a, fg3m,
     }
 
     return(
-        <tr>
+
+        <tr key={f_name + l_name}>
             <td>{f_name}</td>
             <td>{l_name}</td>
             <td>{games_played}</td>
@@ -74,5 +70,3 @@ function SznStatsRow ({ast, blk, fgm, fga, fg_pct ,ftm, fta, ft_pct, fg3a, fg3m,
             <td>{getFantasyScore().toFixed(1)}</td>
         </tr>
     )}
-
-

@@ -1,91 +1,143 @@
 import React, {useState} from 'react';
-import SznStats from './SznStats';
 import DateRange from './DateRange';
-import SznStatsHead from './SznStatsTable';
+import SznStatsTable from './SznStatsTable';
 
 export default function SelectPlayers({playerSearchResults}){
 
-    const [selectedPlayers, setselectedPlayers] = useState([ ]);
+    const [selectedPlayers, setSelectedPlayers] = useState([ ]);
 
-    const handleChange = (evt) => {
+    function handleChange(evt, playerChecked){
         if (evt.target.checked){
-            playerNumLimit(evt)
+            playerNumLimit(evt,playerChecked)
         }
         else{
             //removes players after checkbox unchecked
-            setselectedPlayers( selectedPlayers.filter(playerID => playerID !== evt.target.value) ) ;
+            setSelectedPlayers( selectedPlayers.filter(playerID => playerID !== playerChecked) ) ;
         }
     }
-    function showSznTables(){
-        if (selectedPlayers.length){
-            return (
-            <>
-                <SznStatsHead playerArray={selectedPlayers} />
-
-                <nav><ul>
-                {selectedPlayers.map( (player) => ( 
-                        <PlayerListItem key={player} id={player.split('-')[0]} 
-                        first_name={player.split('-')[1]}  last_name={player.split('-')[2]} 
-                        position = {player.split('-')[3]} teamAbbr={player.split('-')[4]} 
-                        onClickChange = {(e) => handleChange(e)} /> ))}
-                </ul></nav>
-            </>
-            )}
-    }
-//limits selected player to 5
-    function playerNumLimit(evt){
+    //limits selected player to 5
+    function playerNumLimit(evt,player){
         if (selectedPlayers.length === 5){
             alert("no more")
             evt.target.checked = false;
         }
         else if ( selectedPlayers.length < 6) {
-            setselectedPlayers( oldSelectedPlayers => [...oldSelectedPlayers , (evt.target.value) ]  ); 
+            setSelectedPlayers( oldSelectedPlayers => [...oldSelectedPlayers , player ]  ); 
         }
     }
 
+    //removes players after clicked on in Player list display
+    const handleClick = (clickedPlayer) => {
+        setSelectedPlayers(selectedPlayers.filter(playerID => playerID !== clickedPlayer))
+        if( document.getElementById(clickedPlayer.id + 'cbox') ) {
+            console.log("HEYYY")
+            let playersCheckBox = document.getElementById(clickedPlayer.id + 'cbox');
+            playersCheckBox.checked = false;
+        }
+    }
+    
 
-    if (playerSearchResults){
+    if (playerSearchResults && selectedPlayers.length){
+        return (
+            <>
+            <form className="pure-form pure-form-stacked">
+            {playerSearchResults.map( (player) => ( 
+                <PlayerCheckbox  player={player} key={player.id}
+                onCheckChange = {(e) => handleChange(e, player)} /> ))}
+            </form>
+
+            <nav><ul>
+                {selectedPlayers.map( (player) => ( 
+                        <PlayerListItem player={player} key={player.id}
+                        handleClick = {() => handleClick(player)} /> ))}
+            </ul></nav>
+
+            <SznStatsTable playerArray={selectedPlayers} />
+            <DateRange playerArray={selectedPlayers} />
+
+            </>
+        )
+    }
+
+    else if (playerSearchResults){
         return (
         <>
-
-
         <form className="pure-form pure-form-stacked">
             {playerSearchResults.map( (player) => ( 
-                <PlayerCheckbox key={player.id} first_name={player.first_name}  
-                id={player.id} last_name={player.last_name} teamAbbr={player.team.abbreviation} 
-                position = {player.position}  
-                onCheckChange = {(e) => handleChange(e)} /> ))}
+                <PlayerCheckbox key={player.id} player={player}
+                onCheckChange = {(e) => handleChange(e, player)} /> ))}
+
         </form>
-        {showSznTables()}
-        <DateRange playerArray={selectedPlayers} />
         </>
         )
     }
+
     else{
         return ""
     }
 
 }
 
-function PlayerCheckbox({id, first_name, last_name, position, teamAbbr, onCheckChange}){
+function PlayerCheckbox({player, onCheckChange}){
 
+    
         return(
             <label >
-                <input type='checkbox'  value={id + '-' + first_name + '-' +last_name + '-' + position + '-' + teamAbbr}  
-                onChange= { (e) => onCheckChange(e)} />
-                {first_name} {last_name} - {teamAbbr} {position}
+                <input type='checkbox'  value={player.id} onChange= { (e) => onCheckChange(e, player)} id={player.id + 'cbox'} />
+
+                {player.first_name} {player.last_name} - {player.team.abbreviation} {player.position}
             </label>
         )
-    
 }
 
-function PlayerListItem({id, first_name, last_name, position, teamAbbr, onClickChange}){
+function PlayerListItem({player, handleClick}){
 
     return(
         <li>
-        {first_name} {last_name}  - {teamAbbr} {position} 
-            <span className="close" onClick = { () => console.log(id + '-' + first_name + '-' +last_name)}> x </span>
+        {player.first_name} {player.last_name}  - {player.team.abbreviation} {player.position} 
+            <span className="close" onClick = { () => {
+                handleClick(player.id + 'cbox')
+                }  }> x </span>
         </li>
 
     )
 }
+
+
+
+/*
+        <form className="pure-form pure-form-stacked">
+            {playerSearchResults.map( (player) => ( 
+                    <PlayerCheckbox key={player.id} first_name={player.first_name}  
+                    id={player.id} last_name={player.last_name} teamAbbr={player.team.abbreviation} 
+                    position = {player.position}  
+                    onCheckChange = {(e) => handleChange(e)} /> ))}
+
+
+
+
+
+
+
+
+                        if (playerSearchResults && selectedPlayers.length){
+        return (
+            <>
+            <form className="pure-form pure-form-stacked">
+            {playerSearchResults.map( (player) => ( 
+                <PlayerCheckbox  player={player}
+                onCheckChange = {(e) => handleChange(e, player)} /> ))}
+            </form>
+
+            <nav><ul>
+                {selectedPlayers.map( (player) => ( 
+                        <PlayerListItem player={player} key={player.id}
+                        handleClick = {() => handleClick(player)} /> ))}
+            </ul></nav>
+                
+                <SznStatsTable playerArray={selectedPlayers} />
+                <DateRange playerArray={selectedPlayers} />
+            </>
+        )
+    }
+*/

@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export default function RecentStatsTable({first_name, last_name, start_date, end_date, statsArray}){
 
     return (
@@ -44,7 +43,7 @@ export default function RecentStatsTable({first_name, last_name, start_date, end
 function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm, 
     fta, ft_pct, fg3a, fg3m, fg3_pct, pts, reb, stl, game, turnover, min}){
 
-        let prettyGameDate = () => {
+        const prettyGameDate = () => {
             let newDate = game.date.slice(0,10).split("-");
             return newDate[1] + '-' + newDate[2] +  '-' + newDate[0]
         }
@@ -78,5 +77,4 @@ function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm,
             <td>{getFantasyScore()}</td>
         </tr>
         )
-
     }

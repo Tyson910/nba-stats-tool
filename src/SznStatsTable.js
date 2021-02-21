@@ -1,7 +1,7 @@
 import React from 'react';
 import SznStats from './SznStats';
 
-export default function SznStatsHead({playerArray}){
+export default function SznStatsTable({playerArray}){
 
     return (
         <table className='pure-table pure-table-bordered pure-table-striped'>
@@ -34,7 +34,7 @@ export default function SznStatsHead({playerArray}){
                 </tr>
             </thead>
             <tbody>
-                {playerArray.map( (player) => <SznStats player={player}  />)}
+                {playerArray.map( (player) => <SznStats key={player.id} player={player}  />)}
             </tbody>
         </table>
     )
