@@ -30,7 +30,6 @@ export default function SelectPlayers({playerSearchResults}){
     const handleClick = (clickedPlayer) => {
         setSelectedPlayers(selectedPlayers.filter(playerID => playerID !== clickedPlayer))
         if( document.getElementById(clickedPlayer.id + 'cbox') ) {
-            console.log("HEYYY")
             let playersCheckBox = document.getElementById(clickedPlayer.id + 'cbox');
             playersCheckBox.checked = false;
         }

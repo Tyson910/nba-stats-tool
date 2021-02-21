@@ -34,23 +34,37 @@ function usePrevious(value) {
         //sorts games by date in ascending order
         let sortedStats = dataArray.sort( (a,b) => new Date(a.game.date) - new Date(b.game.date) )
         setStatsArray( oldStatsArray => [...oldStatsArray, sortedStats ]  ); 
+
         setLoading(false);  
     }
 
 
     useEffect(() => {
+
+
         if( playerArray.length > prevPlayerArray.length ){
             const [newestPlayer] = playerArray.slice(-1);
-            fetchStats(newestPlayer);
+            fetchStats(newestPlayer.id);
         }
+
+        else if(playerArray.length < prevPlayerArray.length){
+            let z = statsArray.filter( games => playerArray.includes( games[0].player));
+        }
+    
     }, [playerArray] );
 
 
+
+ 
     return <div>Hey</div>
 
 
 
 /*
+
+    useEffect(() => {
+        playerArray.map( player => fetchStats(player.id) )
+    }, [] );
 
         if(loading){
             return <div>Loading</div>
@@ -67,5 +81,13 @@ function usePrevious(value) {
             return <div>Hey</div>
 
         }
+
+                    statsArray.map(x => {
+                console.log(x[0].player)
+                console.log(playerArray)
+                console.log(playerArray.some(xyz => xyz.id === x[0].player.id   ))
+            })
+            let z = statsArray.filter( games => playerArray.some( player =>  player.id === games[0].player.id));
+            console.log(z)
         */
 }
