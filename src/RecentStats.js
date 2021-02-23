@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import RecentStatsTable from './RecentStatsTable';
+import {VictoryLine, VictoryChart, VictoryTheme, VictoryGroup, VictoryScatter} from 'victory';
 
 export default function RecentStats({playerArray, start_date, end_date}){
 
@@ -64,24 +65,59 @@ export default function RecentStats({playerArray, start_date, end_date}){
         }
 
         else if(playerArray.length < prevPlayerArray.length){
-            let z = statsArray.filter( games => filterStats(games) );
             setStatsArray( statsArray.filter( games => filterStats(games) ) ) ;
-            console.log(z)
         }
     
     }, [playerArray] );
-
  
     if(loading){
         return <div style={{margin: "0 0 20vh 0"}}>Loading</div>
 
     }
     else if( statsArray.length ){
+
         return (
-            statsArray.map( stats => <RecentStatsTable statsArray={stats} key={stats[0].player.id}
+            <>
+            {statsArray.map( (stats) => <RecentStatsTable statsArray={stats} key={stats[0].player.id}
                 first_name={stats[0].player.first_name} last_name={stats[0].player.last_name}
                 start_date = {createPrettyDate(start_date)} end_date = {createPrettyDate(end_date)} />
-            )
+            )}
+
+
+<div id="VictoryContainer">
+
+<VictoryChart theme={VictoryTheme.grayscale} id="VictoryContainer"
+        domainPadding={15}   >
+
+<VictoryGroup
+  colorScale={"qualitative"}>
+
+                <VictoryLine
+                y={(d) => d.reb}
+                x={(d) => new Date( d.game.date)}
+                    style={{ parent: { border: "1px solid #ccc"} }}
+                    data={statsArray[0]}
+                />
+                
+        <VictoryLine
+            interpolation="cardinal"
+            y={"ast"}
+            x={(d) => new Date( d.game.date)}
+                style={{ parent: { border: "1px solid #ccc"}  }}
+                data={statsArray[0]}
+            />
+
+                <VictoryScatter
+                    size={1.5}
+                    data={statsArray[0]}
+                    y={"ast"}
+                    x={(d) => new Date( d.game.date)}
+                />
+
+        </VictoryGroup>
+        </VictoryChart>
+            </div>
+            </>
         )
     }
     else{

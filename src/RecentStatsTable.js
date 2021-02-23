@@ -47,7 +47,7 @@ function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm,
             let newDate = game.date.slice(0,10).split("-");
             return newDate[1] + '-' + newDate[2] +  '-' + newDate[0]
         }
-        if(!min){
+        if(!min || min === "0:00"){
             min = "DNP";
         }
 

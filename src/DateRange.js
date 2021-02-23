@@ -18,6 +18,9 @@ export default function DateRange({playerArray}){
               selectsStart
               startDate={startDate}
               endDate={endDate}
+            //set min Date to start of 2020-21 season (Dec 22, 2020)
+              minDate={new Date(2020, 11, 22)}
+              maxDate={new Date()}
             />
             <div>End date</div>
             <DatePicker
@@ -46,6 +49,9 @@ export default function DateRange({playerArray}){
           selectsStart
           startDate={startDate}
           endDate={endDate}
+          //set min Date to start of 2020-21 season (Dec 22, 2020)         
+          minDate={new Date(2020, 11, 22)}
+          maxDate={new Date()}
         />
         <div>End date</div>
         <DatePicker
