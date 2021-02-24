@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react';
 import RecentStatsTable from './RecentStatsTable';
-import {VictoryLine, VictoryChart, VictoryTheme, VictoryGroup, VictoryScatter} from 'victory';
+import {VictoryLine, VictoryChart, VictoryTheme, VictoryGroup, VictoryScatter, VictoryAxis} from 'victory';
 
 export default function RecentStats({playerArray, start_date, end_date}){
 
@@ -52,6 +52,11 @@ export default function RecentStats({playerArray, start_date, end_date}){
         var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" ];
         return months[uglyDate.getMonth()] +  ' ' + uglyDate.getDate() + ', ' + uglyDate.getFullYear();
     }
+    //returns date in 'Jan 1, 2021' format for table header
+    function createPrettyGraphDate( uglyDate ){
+        var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+        return months[uglyDate.getMonth()] +  ' ' + uglyDate.getDate();
+    }
 
     useEffect(() => {
 
@@ -76,7 +81,32 @@ export default function RecentStats({playerArray, start_date, end_date}){
     }
     else if( statsArray.length ){
 
+        const chartTheme = {
+            axis: {
+              style: {
+                tickLabels: {
+                  // this changed the color of my numbers to white
+                  fill: 'white',
+                  padding: 7
+                },
+                grid: {
+                    stroke: 'white', //CHANGE COLOR OF Y-AXIS GRID LINES
+                    strokeDasharray: '5',
+                  },
+                  axis: {
+                    stroke: 'white'  //CHANGE COLOR OF Y-AXIS
+                  },
+              },
+            },
+          };
+const colorArray = ["green", "pink", "blue", "darkorange"];
+
+const getFantasyScore = ({ast, blk, fgm, fga, ftm, fta, pts, reb, stl, turnover}) => (
+    (fgm - fga) + (ftm - fta) + (ast - turnover ) + (reb + stl + blk + pts)
+)
+
         return (
+        
             <>
             {statsArray.map( (stats) => <RecentStatsTable statsArray={stats} key={stats[0].player.id}
                 first_name={stats[0].player.first_name} last_name={stats[0].player.last_name}
@@ -86,35 +116,89 @@ export default function RecentStats({playerArray, start_date, end_date}){
 
 <div id="VictoryContainer">
 
-<VictoryChart theme={VictoryTheme.grayscale} id="VictoryContainer"
-        domainPadding={15}   >
+<div>
+
+    <svg height="40" width="40">
+    <circle cx="20" cy="20" r="8" stroke="black" strokeWidth="3" fill={colorArray[0]} />
+    Sorry, your browser does not support inline SVG.  Please Change browsers to view chart legend
+    </svg> 
+
+            Player One
+
+</div>
+
+<div>
+<svg height="40" width="40">
+    <circle cx="20" cy="20" r="8" stroke="black" strokeWidth="3" fill={colorArray[1]} />
+    Sorry, your browser does not support inline SVG.  
+    </svg> 
+            Player Two
+</div>
+
+<VictoryChart theme={chartTheme} id="VictoryContainer"
+        domainPadding={10}   >
+
+
+<VictoryAxis
+      tickFormat={(x) => createPrettyGraphDate(new Date(x)) }
+  />
+
+<VictoryAxis dependentAxis
+
+ />
+
 
 <VictoryGroup
-  colorScale={"qualitative"}>
-
-                <VictoryLine
-                y={(d) => d.reb}
-                x={(d) => new Date( d.game.date)}
-                    style={{ parent: { border: "1px solid #ccc"} }}
-                    data={statsArray[0]}
-                />
+  colorScale={"qualitative"}
+  color="blue">
                 
         <VictoryLine
-            interpolation="cardinal"
+
             y={"ast"}
             x={(d) => new Date( d.game.date)}
-                style={{ parent: { border: "1px solid #ccc"}  }}
                 data={statsArray[0]}
             />
 
                 <VictoryScatter
-                    size={1.5}
+                    size={3}
                     data={statsArray[0]}
                     y={"ast"}
                     x={(d) => new Date( d.game.date)}
                 />
 
         </VictoryGroup>
+        <VictoryGroup color="green">
+        <VictoryLine
+                y={(d) => d.reb}
+                x={(d) => new Date( d.game.date)}
+                    data={statsArray[0]}
+                />
+
+        <VictoryScatter
+                    size={3}
+                    data={statsArray[0]}
+                    y={"reb"}
+                    x={(d) => new Date( d.game.date)}
+                />
+
+        </VictoryGroup>
+
+        <VictoryGroup color="darkorange">
+                            
+            <VictoryLine
+                y={(d) => getFantasyScore(d)}
+                x={(d) => new Date( d.game.date)}
+                data={statsArray[0]}
+                />
+
+            <VictoryScatter
+                size={3}
+                data={statsArray[0]}
+                y={(d) => getFantasyScore(d)}
+                x={(d) => new Date( d.game.date)}
+            />
+            </VictoryGroup>
+
         </VictoryChart>
             </div>
             </>
