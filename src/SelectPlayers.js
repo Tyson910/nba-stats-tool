@@ -35,17 +35,16 @@ export default function SelectPlayers({playerSearchResults}){
         }
     }
     
-
     if (playerSearchResults && selectedPlayers.length){
         return (
             <>
-            <form className="pure-form pure-form-stacked">
+            <form className="pure-form pure-form-stacked flex-column" id="checkbox-form">
             {playerSearchResults.map( (player) => ( 
                 <PlayerCheckbox  player={player} key={player.id}
                 onCheckChange = {(e) => handleChange(e, player)} /> ))}
             </form>
 
-            <nav><ul>
+            <nav id="player-list"><ul>
                 {selectedPlayers.map( (player) => ( 
                         <PlayerListItem player={player} key={player.id}
                         handleClick = {() => handleClick(player)} /> ))}
@@ -61,7 +60,7 @@ export default function SelectPlayers({playerSearchResults}){
     else if (playerSearchResults){
         return (
         <>
-        <form className="pure-form pure-form-stacked">
+        <form className="pure-form pure-form-stacked flex-column" id="checkbox-form">
             {playerSearchResults.map( (player) => ( 
                 <PlayerCheckbox key={player.id} player={player}
                 onCheckChange = {(e) => handleChange(e, player)} /> ))}
@@ -79,7 +78,6 @@ export default function SelectPlayers({playerSearchResults}){
 
 function PlayerCheckbox({player, onCheckChange}){
 
-    
         return(
             <label >
                 <input type='checkbox'  value={player.id} onChange= { (e) => onCheckChange(e, player)} id={player.id + 'cbox'} />
@@ -101,42 +99,3 @@ function PlayerListItem({player, handleClick}){
 
     )
 }
-
-
-
-/*
-        <form className="pure-form pure-form-stacked">
-            {playerSearchResults.map( (player) => ( 
-                    <PlayerCheckbox key={player.id} first_name={player.first_name}  
-                    id={player.id} last_name={player.last_name} teamAbbr={player.team.abbreviation} 
-                    position = {player.position}  
-                    onCheckChange = {(e) => handleChange(e)} /> ))}
-
-
-
-
-
-
-
-
-                        if (playerSearchResults && selectedPlayers.length){
-        return (
-            <>
-            <form className="pure-form pure-form-stacked">
-            {playerSearchResults.map( (player) => ( 
-                <PlayerCheckbox  player={player}
-                onCheckChange = {(e) => handleChange(e, player)} /> ))}
-            </form>
-
-            <nav><ul>
-                {selectedPlayers.map( (player) => ( 
-                        <PlayerListItem player={player} key={player.id}
-                        handleClick = {() => handleClick(player)} /> ))}
-            </ul></nav>
-                
-                <SznStatsTable playerArray={selectedPlayers} />
-                <DateRange playerArray={selectedPlayers} />
-            </>
-        )
-    }
-*/

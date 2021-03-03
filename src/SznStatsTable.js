@@ -4,7 +4,7 @@ import SznStats from './SznStats';
 export default function SznStatsTable({playerArray}){
 
     return (
-        <table className='pure-table pure-table-bordered pure-table-striped'>
+        <table className='pure-table pure-table-bordered pure-table-striped' id="szn-stats-table">
 
             <caption>
                 2020-21 Season Averages

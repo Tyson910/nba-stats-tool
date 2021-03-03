@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState} from 'react';
 import SelectPlayers from './SelectPlayers';
 
 export default function PlayerSearch (){
@@ -29,16 +29,14 @@ export default function PlayerSearch (){
 
     return ( 
         <>
-        <form className="pure-form">
-        <label>
+        <form className="flex-column" id="search-form">
+        <label className="flex-column">
         Player Name
         <input type="text" value ={playerName} required onChange={e => handleChange(e)}/>
         </label>
         <input className='pure-button' type="submit" value="Search" onClick={ e => handleSumbit(e)} />
         </form>
-
         <SelectPlayers playerSearchResults={playerSearchResults} />
-
         </>
     )
 }

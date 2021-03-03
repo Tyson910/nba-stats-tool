@@ -5,7 +5,7 @@ import {VictoryChart, VictoryAxis, VictoryLine, VictoryGroup, VictoryScatter} fr
 export default function StatsChart({allStatsArray}){
 
     const [statCategory, setStatCategory] = useState('fantasy score');
-    const colorArray = ["gold", "green", "blue", "Magenta", "black" ];
+    const colorArray = ["gold", "Magenta", "green", "blue",  "black" ];
     const categoryArray = [  "fantasy score" ,"min", "pts", "reb", "oreb", "dreb", "ast", "stl", "blk", "fgm", "fga", "fg_pct",
     "fg3m","fg3a", "fg3_pct", "ftm", "fta",  "ft_pct", "turnover",];
     const chartTheme = {
@@ -65,7 +65,7 @@ export default function StatsChart({allStatsArray}){
               (fgm - fga) + (ftm - fta) + (ast - turnover ) + (reb + stl + blk + pts)
           )
           return (
-              <VictoryGroup color={colorArray[i]}>
+              <VictoryGroup color={colorArray[i]} key={playerStats[0].player.id}>
                               
                       <VictoryLine
                           y={(d) => getFantasyScore(d)}
@@ -83,7 +83,7 @@ export default function StatsChart({allStatsArray}){
           )}
           else if (statCategory === "min"){
           return (
-              <VictoryGroup color={colorArray[i]}>
+              <VictoryGroup color={colorArray[i]} key={playerStats[0].player.id}>
                               
                       <VictoryLine
                           y={(d) => Number( d.min.slice(0,2))}
@@ -101,7 +101,7 @@ export default function StatsChart({allStatsArray}){
           )}
           else{
     return (
-        <VictoryGroup color={colorArray[i]}>
+        <VictoryGroup color={colorArray[i]} key={playerStats[0].player.id}>
                       
                 <VictoryLine
                     y={statCategory}

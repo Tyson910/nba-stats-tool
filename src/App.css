@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 body{
@@ -7,6 +8,15 @@ body{
   color: ghostwhite;
 }
 
+.flex-column{
+  display: flex;
+  flex-flow: column;
+}
+
+/* Style selected players list w X at end 
+based on code from
+https://www.w3schools.com/howto/howto_js_close_list_items.asp
+*/
 /* Style the list (remove margins and bullets, etc) */
 ul {
   list-style-type: none;
@@ -51,15 +61,10 @@ ul li:hover {
 
 .pure-table {
   display:block;
-  width: 100vw;
+  width: 100%;
   overflow: scroll;
 }
 
 .pure-table-striped tr:nth-child(2n-1) td {
   background-color: black;
 }
-/*
-#VictoryContainer{
-  background: white;
-}
-*/

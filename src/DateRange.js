@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import RecentStats from './RecentStats';
 
-
 export default function DateRange({playerArray}){
     const [startDate, setStartDate] = useState( null );
     const [endDate, setEndDate] = useState( null );
+
+    useEffect( ()=> {
+      if(startDate > endDate){
+        setEndDate(null)
+      }
+
+    }, [startDate, endDate])
+
     
     if( startDate && endDate){
         return (
           <>
+            <form id="date-picker">
             <div>Start date</div>
             <DatePicker
               selected={startDate}
@@ -32,6 +40,7 @@ export default function DateRange({playerArray}){
               maxDate={new Date() }
               minDate={startDate}
             />
+            </form>
       <RecentStats playerArray={playerArray} start_date={startDate} end_date={endDate} />
           </>
         );
@@ -40,8 +49,8 @@ export default function DateRange({playerArray}){
 
     else{
     return (
-      <>
-        <div>Start date</div>
+      <form id="date-picker">
+      <div>Start date</div>
         <DatePicker
           placeholderText="MM-DD-YYYY"
           selected={startDate}
@@ -64,7 +73,7 @@ export default function DateRange({playerArray}){
           maxDate={new Date() }
           minDate={startDate}
         />
-      </>
+      </form>
     );
   }
 

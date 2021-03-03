@@ -1,7 +1,6 @@
-
 import './App.css';
+import './SearchAndResults.css';
 import PlayerSearch from './PlayerSearch'
-import SznStats from './SznStats';
 
 function App() {
   return (

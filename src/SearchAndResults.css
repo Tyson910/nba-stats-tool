@@ -1,0 +1,54 @@
+#root{
+        max-width: 1500px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+        grid-gap: 10px;
+        grid-template-areas: 
+        "search player-list player-list player-list"
+        "checkboxes player-list player-list player-list"
+        ". player-list player-list player-list"
+        "szn-stats szn-stats szn-stats szn-stats"
+        "dates player-radio player-radio player-radio"
+        "recent-stats recent-stats recent-stats recent-stats"
+        "stats-chart stats-chart stats-chart stats-chart";
+}
+@media screen and (max-width: 641px){
+    #root{
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "search"
+        "checkboxes"
+        "player-list"
+        "szn-stats"
+        "dates"
+        "player-radio"
+        "recent-stats"
+        "stats-chart";
+    }
+}
+#search-form{
+    grid-area: search;
+}
+#checkbox-form{
+    grid-area: checkboxes;
+}
+#player-list{
+    grid-area: player-list;
+}
+#player-radio{
+    grid-area: player-radio;
+}
+#szn-stats-table{
+    grid-area: szn-stats;
+}
+#date-picker{
+    grid-area: dates;
+}
+#recent-stats-table{
+    grid-area: recent-stats;
+}
+#chart{
+    grid-area: stats-chart;
+}

@@ -3,7 +3,7 @@ import React from 'react';
 export default function RecentStatsTable({first_name, last_name, start_date, end_date, statsArray}){
 
     return (
-        <table className='pure-table pure-table-bordered pure-table-striped'>
+        <table className='pure-table pure-table-bordered pure-table-striped' id="recent-stats-table">
 
             <caption>
                 <p>{first_name} {last_name}</p> 
@@ -41,7 +41,7 @@ export default function RecentStatsTable({first_name, last_name, start_date, end
 }
 
 function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm, 
-    fta, ft_pct, fg3a, fg3m, fg3_pct, pts, reb, stl, game, turnover, min}){
+    fta, ft_pct, fg3a, fg3m, fg3_pct, pts, reb, stl, game, turnover, min, player}){
 
         const prettyGameDate = () => {
             let newDate = game.date.slice(0,10).split("-");
@@ -56,7 +56,7 @@ function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm,
             return total;
         }
         return (
-        <tr key={game.date}>
+        <tr key={`${game.date}-${player.id}`}>
             <td>{prettyGameDate()}</td>
             <td>{min}</td>
             <td>{pts}</td>
