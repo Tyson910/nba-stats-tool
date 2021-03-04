@@ -47,8 +47,7 @@ export default function RecentStats({playerArray, start_date, end_date}){
         return months[uglyDate.getMonth()] +  ' ' + uglyDate.getDate() + ', ' + uglyDate.getFullYear();
     }
     useEffect(() => {
-        setRadioBtnStats(statsArray.filter( games => games[0].player.id === playerRadio.id ) 
-        )
+        setRadioBtnStats(statsArray.filter( games => games[0].player.id === playerRadio.id ) )
     }, [playerRadio])
 
     useEffect(() => {
@@ -77,14 +76,18 @@ export default function RecentStats({playerArray, start_date, end_date}){
         }
     
     }, [playerArray, start_date, end_date] );
+
+    useEffect(() => {
+        if(statsArray.length===1){
+            setplayerRadio(statsArray[0][0].player)
+        }
+    }, [statsArray])
  
     if(loading){
         return <div style={{margin: "0 0 20vh 0"}}>Loading</div>
-
     }
     else if( statsArray.length ){
         return (
-        
             <>
             <form id="player-radio">
             <fieldset >
@@ -92,7 +95,7 @@ export default function RecentStats({playerArray, start_date, end_date}){
             {playerArray.map( (player,i)=>{ 
                 if(i === 0){
                     return(
-                        <label >
+                        <label key={player.id + i}>
                         <input type='radio'  value={player}  name="player radio" defaultChecked 
                         id={player.id + 'radio'} onChange={()=>setplayerRadio(player)}/>
                         {player.first_name} {player.last_name} 

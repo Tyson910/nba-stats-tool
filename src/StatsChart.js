@@ -34,23 +34,26 @@ export default function StatsChart({allStatsArray}){
 
     return (
         <>
-      <select onChange={(e)=>setStatCategory(e.target.value)}>
-      {categoryArray.map( category => {
-        if (category === "fantasy score"){
-          return <option key={category} value={category} defaultValue >{category}</option>
-        }
-        else{
-          return <option key={category} value={category} >{category}</option>
-        }
-      })}
-      </select>
+        <div>
+            <select onChange={(e)=>setStatCategory(e.target.value)}>
+              {categoryArray.map( category => {
+                if (category === "fantasy score"){
+                  return <option key={category} value={category} defaultValue >{category}</option>
+                }
+                else{
+                  return <option key={category} value={category} >{category}</option>
+                }
+              })}
+          </select>
 
-      <div>
-      {allStatsArray.map( (playerStats, i) => (
-          <Legend key={playerStats[0].player.id} color={colorArray[i]}
-          name={playerStats[0].player.first_name + ' ' + playerStats[0].player.last_name} />
-          ))} 
-      </div>
+          <div>
+            {allStatsArray.map( (playerStats, i) => (
+                <Legend key={playerStats[0].player.id} color={colorArray[i]}
+                name={playerStats[0].player.first_name + ' ' + playerStats[0].player.last_name} />
+                ))} 
+          </div>
+        </div>
+
 
 
         <div id="VictoryChart">
