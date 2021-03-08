@@ -14,6 +14,9 @@
         "recent-stats recent-stats recent-stats recent-stats"
         "stats-chart stats-chart stats-chart stats-chart";
 }
+#legend-container{
+    margin: 5vh auto 0;
+}
 @media screen and (min-width: 741px){
 
     #date-picker{
@@ -47,6 +50,7 @@
 }
 #player-list{
     grid-area: player-list;
+    margin-top: 1vh;
 }
 #player-radio{
     grid-area: player-radio;

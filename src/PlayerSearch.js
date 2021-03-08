@@ -32,8 +32,8 @@ export default function PlayerSearch (){
         <form className="flex-column" id="search-form">
         <label className="flex-column">
         Player Name
-        <input type="text" value ={playerName} required onChange={e => handleChange(e)}/>
         </label>
+        <input type="text" value ={playerName} required onChange={e => handleChange(e)}/>
         <input className='pure-button' type="submit" value="Search" onClick={ e => handleSumbit(e)} />
         </form>
         <SelectPlayers playerSearchResults={playerSearchResults} />

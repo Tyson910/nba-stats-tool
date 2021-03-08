@@ -13,6 +13,13 @@ body{
   flex-flow: column;
 }
 
+#search-form > input[type="text"]{
+  margin: 1vh 0 2vh;
+}
+#search-form > label{
+  text-align: center;
+}
+
 /* Style selected players list w X at end 
 based on code from
 https://www.w3schools.com/howto/howto_js_close_list_items.asp
@@ -85,6 +92,7 @@ text-align:center
 }
 
 
+.react-datepicker-popper { z-index: 3 !important }
 
 table thead th {
   position: sticky;

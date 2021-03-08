@@ -34,7 +34,7 @@ export default function StatsChart({allStatsArray}){
 
     return (
         <>
-        <div>
+        <div id="legend-container">
             <select onChange={(e)=>setStatCategory(e.target.value)}>
               {categoryArray.map( category => {
                 if (category === "fantasy score"){
@@ -46,7 +46,7 @@ export default function StatsChart({allStatsArray}){
               })}
           </select>
 
-          <div>
+          <div >
             {allStatsArray.map( (playerStats, i) => (
                 <Legend key={playerStats[0].player.id} color={colorArray[i]}
                 name={playerStats[0].player.first_name + ' ' + playerStats[0].player.last_name} />

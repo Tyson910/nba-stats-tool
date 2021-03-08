@@ -118,7 +118,7 @@ export default function RecentStats({playerArray, start_date, end_date}){
                 first_name={stats[0].player.first_name} last_name={stats[0].player.last_name}
                 start_date = {createPrettyDate(start_date)} end_date = {createPrettyDate(end_date)} />
             )}
-            <div id="chart">
+            <div id="chart" className="flex-column">
             <StatsChart allStatsArray={statsArray} />
             </div>
             </>
