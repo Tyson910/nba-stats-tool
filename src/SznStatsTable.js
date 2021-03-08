@@ -12,8 +12,7 @@ export default function SznStatsTable({playerArray}){
 
             <thead>
                 <tr>
-                    <th scope='col'>First Name</th>
-                    <th scope='col'>Last Name</th>
+                    <th scope='col'>Player</th>
                     <th scope='col'>Games</th>
                     <th scope='col'>Pts</th>
                     <th scope='col'>Reb</th>

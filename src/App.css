@@ -63,8 +63,54 @@ ul li:hover {
   display:block;
   width: 100%;
   overflow: scroll;
+  border: none;
+}
+tbody{white-space: nowrap;}
+
+
+.pure-table-striped th[scope=col] {
+text-align:center
 }
 
-.pure-table-striped tr:nth-child(2n-1) td {
+.pure-table-striped tbody tr:nth-child(odd) td, .pure-table-striped tbody tr:nth-child(odd) th {
   background-color: black;
+  border: 1px solid #cbcbcb;
+}
+.pure-table-striped tbody tr:nth-child(even) td, .pure-table-striped tbody tr:nth-child(even) th {
+  background-color: #353B45;
+  border: 1px solid #cbcbcb;
+}
+.pure-table-bordered tr{
+  border: 1px solid #cbcbcb;
+}
+
+
+
+table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 25vw;
+}
+table td {
+  text-align: center;
+}
+
+table tbody th {
+  position: relative;
+}
+table thead th:first-child {
+  background: #d6d6d6;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+caption {
+  position: sticky;
+  left: 0;
 }

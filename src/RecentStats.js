@@ -77,6 +77,7 @@ export default function RecentStats({playerArray, start_date, end_date}){
     
     }, [playerArray, start_date, end_date] );
 
+    //selects first radio button on first load
     useEffect(() => {
         if(statsArray.length===1){
             setplayerRadio(statsArray[0][0].player)
@@ -103,7 +104,7 @@ export default function RecentStats({playerArray, start_date, end_date}){
                     )}
                 else{
                     return(
-                        <label >
+                        <label key={player.id + i} >
                         <input type='radio'  value={player}  name="player radio" id={player.id + 'radio'}
                         onChange={()=>setplayerRadio(player)}/>
                         {player.first_name} {player.last_name} 

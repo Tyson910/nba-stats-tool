@@ -1,5 +1,5 @@
 import './App.css';
-import './SearchAndResults.css';
+import './Grid.css';
 import PlayerSearch from './PlayerSearch'
 
 function App() {

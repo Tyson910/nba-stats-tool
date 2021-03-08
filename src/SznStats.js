@@ -49,8 +49,7 @@ function SznStatsRow ({ast, blk, fgm, fga, fg_pct ,ftm, fta, ft_pct, fg3a, fg3m,
     return(
 
         <tr key={f_name + l_name}>
-            <td>{f_name}</td>
-            <td>{l_name}</td>
+            <th>{f_name}  {l_name}</th>
             <td>{games_played}</td>
             <td>{pts.toFixed(1)}</td>
             <td>{reb.toFixed(1)}</td>

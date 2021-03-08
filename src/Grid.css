@@ -1,6 +1,6 @@
 #root{
         max-width: 1500px;
-        margin: 0 auto;
+        margin: 5vh 5vw 0;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: auto;
@@ -10,12 +10,23 @@
         "checkboxes player-list player-list player-list"
         ". player-list player-list player-list"
         "szn-stats szn-stats szn-stats szn-stats"
-        "dates player-radio player-radio player-radio"
+        " . dates player-radio  ."
         "recent-stats recent-stats recent-stats recent-stats"
         "stats-chart stats-chart stats-chart stats-chart";
 }
+@media screen and (min-width: 741px){
+
+    #date-picker{
+        justify-self: center;
+    }
+    #player-radio{
+        justify-self: left;
+    }
+}
+
 @media screen and (max-width: 641px){
     #root{
+        margin: 0 auto;
         grid-template-columns: 1fr;
         grid-template-areas: 
         "search"
@@ -42,6 +53,7 @@
 }
 #szn-stats-table{
     grid-area: szn-stats;
+    margin: 5vh 0;
 }
 #date-picker{
     grid-area: dates;

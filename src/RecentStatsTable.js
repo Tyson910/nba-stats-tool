@@ -57,7 +57,7 @@ function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm,
         }
         return (
         <tr key={`${game.date}-${player.id}`}>
-            <td>{prettyGameDate()}</td>
+            <th>{prettyGameDate()}</th>
             <td>{min}</td>
             <td>{pts}</td>
             <td>{reb}</td>
