@@ -3,8 +3,11 @@
   margin: 0;
 }
 
+button, optgroup, select, textarea,form, p{
+  font-size: 1.25em;
+}
 body{
-  background-color: #282c34;
+  background: #0C1414;
   color: ghostwhite;
 }
 
@@ -38,7 +41,7 @@ ul li {
   background-color: #f6f6f6;
   padding: 12px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 1.25em;
   color: black;
   display: block;
   position: relative;

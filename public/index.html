@@ -24,12 +24,30 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
-    <link rel="stylesheet" href="../src/App.css" />
-    <link rel="stylesheet" href="../src/Grid.css" />
+    <link href="./Intro.css" rel="stylesheet" />
+
     <title>NBA Stats Tool</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="intro">
+      <h1>Welcome to my NBA fantasy stats app!</h1>
+      <div>
+        <p>This app was made possible with the balldontlie API created by --- <a>link.com</a></p>
+        <p>Fantasy scoring on this site are based on ESPN's old scoring style calculated as follows: </p>
+        <p> Points + Rebounds + Steals + Blocks + (Field Goals Made - Field Goals Attemped) + 
+            (Free Throws Made - Free Throws Attemped) + (Assists - Turnovers) </p>
+      </div>
+
+      <ol>
+        <h3>Directions</h3>
+          <li>Search and select up to 5 players</li>
+          <li>Browse through each players season averages</li>
+          <li>Select a date range</li>
+          <li>Browse through each players game stats in chosen date range</li>
+          <li>Compare players stats visually by using the graph</li>
+      </ol>
+  </div>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 
   </body>

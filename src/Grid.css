@@ -61,6 +61,7 @@
 }
 #date-picker{
     grid-area: dates;
+    text-align: center;
 }
 #recent-stats-table{
     grid-area: recent-stats;
