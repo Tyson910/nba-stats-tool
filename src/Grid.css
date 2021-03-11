@@ -55,6 +55,9 @@
 #player-radio{
     grid-area: player-radio;
 }
+#player-radio label{
+    display:block;
+}
 #szn-stats-table{
     grid-area: szn-stats;
     margin: 5vh 0;
@@ -63,7 +66,7 @@
     grid-area: dates;
     text-align: center;
 }
-#recent-stats-table{
+#recent-stats-table, #recent-stats{
     grid-area: recent-stats;
 }
 #chart{

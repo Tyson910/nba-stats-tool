@@ -5,6 +5,8 @@ import {VictoryChart, VictoryAxis, VictoryLine, VictoryGroup, VictoryScatter} fr
 export default function StatsChart({allStatsArray}){
 
     const [statCategory, setStatCategory] = useState('fantasy score');
+    //filter out empty arrays (no games between start & end dates);
+    const filteredStats = allStatsArray.filter( stats => stats.length > 0);
     const colorArray = ["gold", "Magenta", "green", "blue",  "black" ];
     const categoryArray = [  "fantasy score" ,"min", "pts", "reb", "oreb", "dreb", "ast", "stl", "blk", "fgm", "fga", "fg_pct",
     "fg3m","fg3a", "fg3_pct", "ftm", "fta",  "ft_pct", "turnover",];

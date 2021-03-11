@@ -2,42 +2,46 @@ import React from 'react';
 
 export default function RecentStatsTable({first_name, last_name, start_date, end_date, statsArray}){
 
-    return (
-        <table className='pure-table pure-table-bordered pure-table-striped' id="recent-stats-table">
-
-            <caption>
-                <p>{first_name} {last_name}</p> 
-                <p> Games Between {start_date} and {end_date} </p>
-            </caption>
-
-            <thead>
-                <tr>
-                    <th scope='col'>Game Date</th>
-                    <th scope='col'>Min</th>
-                    <th scope='col'>Pts</th>
-                    <th scope='col'>Reb</th>
-                    <th scope='col'>Assists</th>
-                    <th scope='col'>Steals</th>
-                    <th scope='col'>Blocks</th>
-                    <th scope='col'>TO</th>
-                    <th scope='col'>FGM</th>
-                    <th scope='col'>FGA</th>
-                    <th scope='col'>FG(%)</th> 
-                    <th scope='col'>FG3M</th>
-                    <th scope='col'>FG3A</th>
-                    <th scope='col'>FG3(%) </th>
-                    <th scope='col'>FTM</th>
-                    <th scope='col'>FTA</th>
-                    <th scope='col'>FT(%) </th>
-                    <th scope='col'>Fantasy</th>
-                </tr>
-            </thead>
-            <tbody>
-                {statsArray.map( (stats) => RecentStatsTableBody(stats) )}
-            </tbody>
-        </table>
-
-    )
+    if(statsArray.length === 0){
+        return <div id="recent-stats-table">Sorry, No stats found for this player from {start_date} to {end_date}</div>
+    }
+    else{
+        return (
+            <table className='pure-table pure-table-bordered pure-table-striped' id="recent-stats-table">
+    
+                <caption>
+                    <p>{first_name} {last_name}</p> 
+                    <p> Games Between {start_date} and {end_date} </p>
+                </caption>
+    
+                <thead>
+                    <tr>
+                        <th scope='col'>Game Date</th>
+                        <th scope='col'>Min</th>
+                        <th scope='col'>Pts</th>
+                        <th scope='col'>Reb</th>
+                        <th scope='col'>Assists</th>
+                        <th scope='col'>Steals</th>
+                        <th scope='col'>Blocks</th>
+                        <th scope='col'>TO</th>
+                        <th scope='col'>FGM</th>
+                        <th scope='col'>FGA</th>
+                        <th scope='col'>FG(%)</th> 
+                        <th scope='col'>FG3M</th>
+                        <th scope='col'>FG3A</th>
+                        <th scope='col'>FG3(%) </th>
+                        <th scope='col'>FTM</th>
+                        <th scope='col'>FTA</th>
+                        <th scope='col'>FT(%) </th>
+                        <th scope='col'>Fantasy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {statsArray.map( (stats) => RecentStatsTableBody(stats) )}
+                </tbody>
+            </table>
+        )
+    }
 }
 
 function RecentStatsTableBody({ast, blk, fgm, fga, fg_pct ,ftm, 

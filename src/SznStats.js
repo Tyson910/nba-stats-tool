@@ -30,9 +30,8 @@ export default function SznStats({player}){
             return <tr><td>Loading plz give it a second :)</td></tr>
         }
         else{
-            return <tr><td colSpan='8' rowSpan='2'>
-            Sorry {player.first_name} {player.last_name} 
-            2020-21 Stats couldn't be found please try again.  
+            return <tr><td colSpan='18' rowSpan='1'>
+            Sorry {player.first_name} {player.last_name} 2020-21 Stats couldn't be found please try again.  
             </td></tr>
         }
 }

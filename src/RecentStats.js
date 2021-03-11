@@ -28,9 +28,11 @@ export default function RecentStats({playerArray, start_date, end_date}){
         let response = await fetch(API + playerID);
         let resultObj = await response.json();
         let dataArray = resultObj.data;
+        if (dataArray.length > 0){
         //sorts games by date in ascending order
         let sortedStats = dataArray.sort( (a,b) => new Date(a.game.date) - new Date(b.game.date) )
         setStatsArray( oldStatsArray => [...oldStatsArray, sortedStats ]  ); 
+        }
         setLoading(false);  
     }
 
@@ -47,7 +49,13 @@ export default function RecentStats({playerArray, start_date, end_date}){
         return months[uglyDate.getMonth()] +  ' ' + uglyDate.getDate() + ', ' + uglyDate.getFullYear();
     }
     useEffect(() => {
-        setRadioBtnStats(statsArray.filter( games => games[0].player.id === playerRadio.id ) )
+            const filteredStats = statsArray.filter( games => games[0].player.id === playerRadio.id);
+            if (filteredStats.length > 0){
+                setRadioBtnStats(filteredStats );
+            }
+            else{
+                setRadioBtnStats(["not found"]);
+            }
     }, [playerRadio])
 
     useEffect(() => {
@@ -79,7 +87,8 @@ export default function RecentStats({playerArray, start_date, end_date}){
 
     //selects first radio button on first load
     useEffect(() => {
-        if(statsArray.length===1){
+        //checks if games were found between start and end date
+        if(statsArray.length===1 && statsArray[0].length > 0){
             setplayerRadio(statsArray[0][0].player)
         }
     }, [statsArray])
@@ -114,10 +123,22 @@ export default function RecentStats({playerArray, start_date, end_date}){
             </fieldset>
             </form>
 
-            {radioBtnStats.map( (stats) => <RecentStatsTable statsArray={stats} key={stats[0].player.id}
-                first_name={stats[0].player.first_name} last_name={stats[0].player.last_name}
-                start_date = {createPrettyDate(start_date)} end_date = {createPrettyDate(end_date)} />
-            )}
+            {radioBtnStats.map( (stats) => {
+                if(stats === "not found"){
+                    return (
+                        <div id="recent-stats">Sorry, No stats found for this 
+                            player from {createPrettyDate(start_date)} to {createPrettyDate(end_date)}</div>
+                    ) 
+                }
+                else{
+                    return (
+                        <RecentStatsTable statsArray={stats} key={stats[0].player.id}
+                        first_name={stats[0].player.first_name} last_name={stats[0].player.last_name}
+                        start_date = {createPrettyDate(start_date)} end_date = {createPrettyDate(end_date)} />
+                    ) 
+                }
+            })}
+
             <div id="chart" className="flex-column">
             <StatsChart allStatsArray={statsArray} />
             </div>

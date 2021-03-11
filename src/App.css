@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-button, optgroup, select, textarea,form, p{
+button, optgroup, select, textarea,form, p, #recent-stats{
   font-size: 1.25em;
 }
 body{
@@ -23,6 +23,10 @@ body{
   text-align: center;
 }
 
+#recent-stats{
+  text-align: center;
+  padding-top: 5%;
+}
 /* Style selected players list w X at end 
 based on code from
 https://www.w3schools.com/howto/howto_js_close_list_items.asp
