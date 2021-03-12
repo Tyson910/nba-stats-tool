@@ -87,16 +87,24 @@ export default function RecentStats({playerArray, start_date, end_date}){
 
     //selects first radio button on first load
     useEffect(() => {
+        //console.log(playerArray[0])
+
         //checks if games were found between start and end date
         if(statsArray.length===1 && statsArray[0].length > 0){
             setplayerRadio(statsArray[0][0].player)
         }
+        
+        else if(statsArray.length===0){
+            setplayerRadio(playerArray[0])
+        }
+        
+
     }, [statsArray])
  
     if(loading){
         return <div style={{margin: "0 0 20vh 0"}}>Loading</div>
     }
-    else if( statsArray.length ){
+    else if( statsArray.length){
         return (
             <>
             <form id="player-radio">
@@ -142,6 +150,39 @@ export default function RecentStats({playerArray, start_date, end_date}){
             <div id="chart" className="flex-column">
             <StatsChart allStatsArray={statsArray} />
             </div>
+            </>
+        )
+    }
+    else if( playerRadio ){
+        return (
+            <>
+            <form id="player-radio">
+            <fieldset >
+            <legend>Select a Player: </legend>
+            {playerArray.map( (player,i)=>{ 
+                if(i === 0){
+                    return(
+                        <label key={player.id + i}>
+                        <input type='radio'  value={player}  name="player radio" defaultChecked 
+                        id={player.id + 'radio'} onChange={()=>setplayerRadio(player)}/>
+                        {player.first_name} {player.last_name} 
+                        </label>
+                    )}
+                else{
+                    return(
+                        <label key={player.id + i} >
+                        <input type='radio'  value={player}  name="player radio" id={player.id + 'radio'}
+                        onChange={()=>setplayerRadio(player)}/>
+                        {player.first_name} {player.last_name} 
+                        </label>
+                    )}
+                })}
+            </fieldset>
+            </form>
+            <div id="recent-stats" style={{marginBottom:'5vh'}}>Sorry, No stats found for this 
+            player from {createPrettyDate(start_date)} to {createPrettyDate(end_date)}</div>
+
+
             </>
         )
     }
