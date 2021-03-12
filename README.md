@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Welcome to my NBA fantasy stats app!
 
-This app was made possible with the BallDontLie API (https://www.balldontlie.io) 
+This app was made possible with the [BallDontLie API] (https://www.balldontlie.io) 
   created by Github user 'ynnadkrap'
   
 ## Scoring
