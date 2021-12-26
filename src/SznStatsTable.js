@@ -2,12 +2,13 @@ import React from 'react';
 import SznStats from './SznStats';
 
 export default function SznStatsTable({playerArray}){
-
+const today = new Date();
     return (
         <table className='pure-table pure-table-bordered pure-table-striped' id="szn-stats-table">
 
             <caption>
-                2020-21 Season Averages
+                {/* 2020-21 Season Averages format */}
+                {`${today.getFullYear()}-${today.getFullYear() + 1 - 2000}`} Season Averages
             </caption>
 
             <thead>
