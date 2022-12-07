@@ -14,3 +14,12 @@ export async function searchPlayerName(name: string): Promise<any> | null {
     return null;
   }
 }
+
+/**
+ * returns date in 'YYYY-MM-DD' numerical format for API reference
+ */
+function createAPIDate(uglyDate: Date): string {
+  // API saves Jan == 1, Feb ==2 so we add 1 to the get Month function
+  return uglyDate.getFullYear() + "-" + (uglyDate.getMonth() + 1) + "-" +
+    uglyDate.getDate();
+}
