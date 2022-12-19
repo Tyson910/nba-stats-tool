@@ -17,6 +17,7 @@
 		"strictNullChecks": true,
 		"baseUrl": "./",
 		"paths": {
+			"@assets/*": ["src/assets/*"],
 			"@components/*": ["src/components/*"],
 			"@local-types/*": ["src/types/*"],
 			"@utils/*": ["src/utils/*"]
