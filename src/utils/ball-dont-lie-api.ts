@@ -1,17 +1,29 @@
-/** fetches player info then adds it to selectedPlayers Array */
-export async function searchPlayerName(name: string): Promise<any> | null {
-  if (!name) return null;
-  var API = "https://www.balldontlie.io/api/v1/players?search=";
+import type { Player } from "@local-types/ball-dont-lie/Player.d";
+interface paginationObj {
+  total_pages: number;
+  current_page: number;
+  next_page: number | null;
+  per_page: number;
+  total_count: number;
+}
+
+/** Fetches player info based on name */
+export async function searchPlayerName(name: string): Promise<Player[]> {
+  if (!name) return [];
+  interface searchResult {
+    data: Player[];
+    meta: paginationObj;
+  }
+  const API = "https://www.balldontlie.io/api/v1/players?search=";
   // Replace spaces with underscores
-  let query = name.trim().split(" ").join("_");
+  const query = name.trim().split(" ").join("_");
   try {
     const response = await fetch(API + query + "&per_page=5");
-    // TODO: map out this reponse interface
-    const resultObj = await response.json();
+    const resultObj: searchResult = await response.json();
     return resultObj.data;
   } catch (err) {
     console.log(err);
-    return null;
+    return [];
   }
 }
 
