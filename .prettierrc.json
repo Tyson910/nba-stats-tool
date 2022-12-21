@@ -14,5 +14,7 @@
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "useTabs": true
+  "useTabs": true,
+  "svelteSortOrder": "options-scripts-markup-styles",
+  "svelteAllowShorthand": true
 }
