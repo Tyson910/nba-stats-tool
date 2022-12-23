@@ -14,16 +14,12 @@ interface APIResponse<Type> {
 /** Fetches player info based on name */
 export async function searchPlayerName(name: string): Promise<Player[]> {
   if (!name) return [];
-  interface searchResult {
-    data: Player[];
-    meta: paginationObj;
-  }
   const API = "https://www.balldontlie.io/api/v1/players?search=";
   // Replace spaces with underscores
   const query = name.trim().split(" ").join("_");
   try {
     const response = await fetch(API + query + "&per_page=5");
-    const resultObj: searchResult = await response.json();
+    const resultObj: APIResponse<Player> = await response.json();
     return resultObj.data;
   } catch (err) {
     console.log(err);
