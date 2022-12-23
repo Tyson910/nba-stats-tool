@@ -1,10 +1,14 @@
-import type { Player } from "@local-types/ball-dont-lie/Player.d";
-interface paginationObj {
-  total_pages: number;
-  current_page: number;
-  next_page: number | null;
-  per_page: number;
-  total_count: number;
+import type { Player } from "@local-types/ball-dont-lie/index";
+
+interface APIResponse<Type> {
+  data: Type[];
+  meta: {
+    total_pages: number;
+    current_page: number;
+    next_page: number | null;
+    per_page: number;
+    total_count: number;
+  };
 }
 
 /** Fetches player info based on name */
