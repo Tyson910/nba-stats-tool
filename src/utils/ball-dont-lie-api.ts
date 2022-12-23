@@ -19,8 +19,13 @@ export async function searchPlayerName(name: string): Promise<Player[]> {
   const query = name.trim().split(" ").join("_");
   try {
     const response = await fetch(API + query + "&per_page=5");
-    const resultObj: APIResponse<Player> = await response.json();
-    return resultObj.data;
+    const { data }: APIResponse<Player> = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+}
   } catch (err) {
     console.log(err);
     return [];
