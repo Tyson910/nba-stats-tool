@@ -1,4 +1,7 @@
-import type { Player } from "@local-types/ball-dont-lie/index";
+import type {
+  Player,
+  PlayerSeasonAverage,
+} from "@local-types/ball-dont-lie/index";
 
 interface APIResponse<Type> {
   data: Type[];
@@ -26,6 +29,13 @@ export async function searchPlayerName(name: string): Promise<Player[]> {
     return [];
   }
 }
+
+export async function searchPlayerSeasonStats(playerID: Player["id"]) {
+  const API = "https://www.balldontlie.io/api/v1/season_averages?player_ids[]=";
+  try {
+    const response = await fetch(API + playerID);
+    const { data }: APIResponse<PlayerSeasonAverage> = await response.json();
+    return data[0];
   } catch (err) {
     console.log(err);
     return [];
