@@ -5,3 +5,7 @@
 body {
 	@apply bg-slate-50;
 }
+
+button:disabled{
+	@apply cursor-not-allowed opacity-80;
+}
