@@ -1,6 +1,7 @@
 import type {
   Player,
   PlayerSeasonAverage,
+  PlayerGameStat
 } from "@local-types/ball-dont-lie/index";
 
 interface APIResponse<Type> {
@@ -44,6 +45,21 @@ export async function getPlayerSeasonStats(
   } catch (err) {
     console.log(err);
     return null;
+  }
+}
+
+export async function getLast10GameStats(
+  playerID: Player["id"],
+): Promise<PlayerGameStat[]> {
+  const API =
+    "https://www.balldontlie.io/api/v1/stats?per_page=10&player_ids[]=";
+  try {
+    const response = await fetch(API + playerID);
+    const { data }: APIResponse<PlayerGameStat> = await response.json();
+    return data;
+  } catch (err) {
+    console.log(err);
+    return [];
   }
 }
 
