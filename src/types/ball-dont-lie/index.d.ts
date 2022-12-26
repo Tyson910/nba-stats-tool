@@ -1,5 +1,10 @@
 import { Team } from "./Team";
 import { Player } from "./Player";
 import { PlayerSeasonAverage } from "./SeasonAverage";
-
-export {Team, Player, PlayerSeasonAverage};
+import { PlayerGameStat } from "./PlayerGameStat";
+export {
+  Player,
+  PlayerGameStat,
+  PlayerSeasonAverage,
+  Team,
+};
