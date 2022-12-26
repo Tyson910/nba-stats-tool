@@ -23,5 +23,7 @@ export function getESPNFantasyScore(
     turnover: number;
   },
 ): string {
-  return (fgm - fga) + (ftm - fta) + (ast - turnover) + (reb + stl + blk + pts).toFixed(1);
+  const total = (fgm - fga) + (ftm - fta) + (ast - turnover) +
+    (reb + stl + blk + pts);
+  return total.toFixed(2);
 }
