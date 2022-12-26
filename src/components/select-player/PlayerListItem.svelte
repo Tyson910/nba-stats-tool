@@ -10,18 +10,11 @@
 <li class="flex items-center justify-between space-x-3 py-4">
 	<div class="flex min-w-0 flex-1 items-center space-x-3">
 		<div class="flex-shrink-0">
-			<!-- <img
-        class="h-10 w-10"
-        src={`/nba-logos/PHI.svg`}
-        alt={`${player?.team?.full_name} logo`} /> -->
-			<!-- <img
-        class="h-8 w-8"
-        src="/nba-logos/ATL.png"
-        alt={`${player?.team?.full_name} logo`} /> -->
-			<!-- https://assets.stickpng.com/thumbs/58419be4a6515b1e0ad75a58.png -->
-
-			<!-- src={`/nba-logos/${player?.team?.abbreviation.toUpperCase()}.svg`}
-      src={`/nba-logos/BKN.svg`} -->
+			<img
+				class="h-8 w-8"
+				src={`/nba-logos/${player?.team?.abbreviation.toUpperCase()}.png`}
+				alt={`${player?.team?.full_name} logo`}
+				loading="lazy" />
 		</div>
 		<div class="min-w-0 flex-1">
 			<p class="truncate text-sm font-medium text-gray-900">
