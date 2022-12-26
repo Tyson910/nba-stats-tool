@@ -23,7 +23,10 @@ export async function searchPlayerName(name: string): Promise<Player[]> {
   try {
     const response = await fetch(API + query + "&per_page=5");
     const { data }: APIResponse<Player> = await response.json();
-    return data;
+    const onlyCurrentPlayers = data.filter((player) =>
+      !!player.position && !!player.height_feet && !!player.weight_pounds
+    );
+    return onlyCurrentPlayers;
   } catch (err) {
     console.log(err);
     return [];
