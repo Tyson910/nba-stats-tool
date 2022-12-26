@@ -33,7 +33,9 @@ export async function searchPlayerName(name: string): Promise<Player[]> {
   }
 }
 
-export async function searchPlayerSeasonStats(playerID: Player["id"]) {
+export async function getPlayerSeasonStats(
+  playerID: Player["id"],
+): Promise<PlayerSeasonAverage | null> {
   const API = "https://www.balldontlie.io/api/v1/season_averages?player_ids[]=";
   try {
     const response = await fetch(API + playerID);
@@ -41,7 +43,7 @@ export async function searchPlayerSeasonStats(playerID: Player["id"]) {
     return data[0];
   } catch (err) {
     console.log(err);
-    return [];
+    return null;
   }
 }
 
