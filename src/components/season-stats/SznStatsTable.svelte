@@ -28,9 +28,9 @@
 
 <div class="">
 	<div class="sm:flex flex-col sm:items-center">
-		<h1 class="text-xl font-semibold text-gray-900">{yearString} Season Average</h1>
+		<h1 class="text-xl font-semibold text-gray-900">Season Average</h1>
 		<p class="mt-2 text-sm text-gray-700">
-			A table of placeholder stock market data that does not make any sense.
+			{yearString} Season
 		</p>
 	</div>
 	<div class="mt-8 flex flex-col">
