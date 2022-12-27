@@ -2,9 +2,13 @@
 export const teamPrimaryColorRGB = {
   /** Hawks Red  */
   ATL: "#E03A3E",
+  /** Black */
   BKN: "#000000",
+  /** Celtics Green  */
   BOS: "#007A33",
+  /** Hornets Purple  */
   CHA: "#1D1160",
+  /** Bulls Red */
   CHI: "#CE1141",
   CLE: "#860038",
   DAL: "#00538C",
