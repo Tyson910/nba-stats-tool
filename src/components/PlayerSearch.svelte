@@ -20,7 +20,9 @@
 		try {
 			playerSearchResults = await searchPlayerName(userSearchInput);
 			if (playerSearchResults.length === 0) {
-				playerSearchErrorMessage = `"${userSearchInput}" couldn't be found. Try another player`;
+				playerSearchErrorMessage = `"${userSearchInput}" couldn't be found. Try searching for an active player`;
+			} else {
+				playerSearchErrorMessage = "";
 			}
 		} catch (err) {
 			console.log(err);
