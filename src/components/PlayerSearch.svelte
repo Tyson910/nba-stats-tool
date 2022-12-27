@@ -71,10 +71,15 @@
 		id="email-description">
 		{playerSearchErrorMessage}
 	</p>
-	<!-- TODO: add loading state icon -->
 	<button
-		class="bg-green-800 text-green-50 w-max self-end py-1 px-3 rounded-lg"
-		type="submit">Search</button>
+		class="bg-indigo-600 text-green-50 w-max self-end py-2 px-3 rounded-lg inline-flex items-center"
+		type="submit"
+		class:animate-pulse={loading}
+		>Search
+		{#if loading}
+			<Spinner />
+		{/if}
+	</button>
 </form>
 <section class="max-w-lgmx-auto my-4">
 	{#each playerSearchResults as player (player.id)}
