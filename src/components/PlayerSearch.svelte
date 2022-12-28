@@ -2,7 +2,7 @@
 	import type { Player } from "@local-types/ball-dont-lie";
 	import { getContext } from "svelte";
 	const { addPlayerToSelectedPlayers } = getContext("selectedPlayers");
-	import { getPlayerSeasonStats, searchPlayerName } from "@utils/ball-dont-lie-api";
+	import { getSeasonAverages, searchPlayerName } from "@utils/ball-dont-lie-api";
 	import PlayerListItem from "@components/select-player/PlayerListItem.svelte";
 	import EmptyState from "@components/select-player/EmptyState.svelte";
 
@@ -39,10 +39,10 @@
 
 		try {
 			//fetch season stats
-			const seasonStats = await getPlayerSeasonStats(player.id);
+			const seasonAverages = await getSeasonAverages(player.id);
 			// handle this error
-			if (!seasonStats) return;
-			addPlayerToSelectedPlayers({ ...player, seasonStats });
+			if (!seasonAverages) return;
+			addPlayerToSelectedPlayers({ ...player, seasonAverages });
 		} catch (err) {
 			console.log(err);
 			return;
