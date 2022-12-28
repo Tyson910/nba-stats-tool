@@ -9,7 +9,7 @@
 	export let selectedTab: "allGameStatsForSeason" | "last10GameStats";
 	let ctx: HTMLCanvasElement | null;
 	let myChart: Chart<"line", any[], string>;
-	const color: string[] = ["red", "blue", "black", "teal", "green"];
+	const color: string[] = ["gold", "magenta", "green", "blue",  "black"];
 
 	onMount(() => {
 		ctx = document.querySelector("canvas");
