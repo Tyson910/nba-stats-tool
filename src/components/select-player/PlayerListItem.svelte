@@ -24,7 +24,7 @@
 			</p>
 			<p
 				class="truncate text-sm font-medium"
-				style="color: {teamPrimaryColorRGB[player?.team?.abbreviation]};">
+				style="color: {teamColorString};">
 				{player?.team?.full_name}
 			</p>
 		</div>
