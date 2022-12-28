@@ -96,7 +96,7 @@ function createAPIDate(uglyDate: Date): string {
     uglyDate.getDate();
 }
 
-function is1stHalfOfSeason(): boolean {
+export function is1stHalfOfSeason(): boolean {
   const today = new Date();
   return today.getMonth() > 9;
 }
