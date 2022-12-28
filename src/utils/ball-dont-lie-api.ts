@@ -49,8 +49,12 @@ export async function getPlayerSeasonAverages(
 export async function getAllGameStatsForSeason(
   playerID: Player["id"],
 ): Promise<PlayerGameStat[]> {
+  const today = new Date();
+  const seasonStr = is1stHalfOfSeason()
+    ? today.getFullYear()
+    : today.getFullYear() - 1;
   const API =
-    `https://www.balldontlie.io/api/v1/stats?seasons[]=2022&per_page=82&player_ids[]=`;
+    `https://www.balldontlie.io/api/v1/stats?seasons[]=${seasonStr}&per_page=82&player_ids[]=`;
   try {
     const response = await fetch(API + playerID);
     const { data }: APIResponse<PlayerGameStat> = await response.json();
