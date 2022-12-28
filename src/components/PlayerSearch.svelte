@@ -5,14 +5,17 @@
 	import { getAllGameStatsForSeason, getPlayerSeasonAverages, searchPlayerName } from "@utils/ball-dont-lie-api";
 	import PlayerListItem from "@components/select-player/PlayerListItem.svelte";
 	import EmptyState from "@components/select-player/EmptyState.svelte";
+	import Spinner from "@components/icons/Spinner.svelte";
 
 	export let selectedPlayersIDs: Player["id"][] = [];
 
 	let userSearchInput = "";
 	let playerSearchErrorMessage = "";
+	let loading: boolean = false;
 	let playerSearchResults: Player[] = [];
 
 	async function handlePlayerSearchSubmit(evt: SubmitEvent) {
+		loading = true;
 		if (!userSearchInput) {
 			playerSearchErrorMessage = "Please enter a valid name";
 			return;
@@ -27,6 +30,8 @@
 		} catch (err) {
 			console.log(err);
 			playerSearchErrorMessage = `An Error occured "${err.message}". Please try again later`;
+		} finally {
+			loading = false;
 		}
 	}
 
