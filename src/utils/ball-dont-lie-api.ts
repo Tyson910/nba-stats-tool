@@ -1,7 +1,7 @@
 import type {
   Player,
+  PlayerGameStat,
   PlayerSeasonAverage,
-  PlayerGameStat
 } from "@local-types/ball-dont-lie/index";
 
 interface APIResponse<Type> {
@@ -91,3 +91,27 @@ function createAPIDate(uglyDate: Date): string {
   return uglyDate.getFullYear() + "-" + (uglyDate.getMonth() + 1) + "-" +
     uglyDate.getDate();
 }
+
+export const validGraphFields = {
+  "games_played": "Games Played",
+  "season": "Season",
+  "pts": "Points",
+  "min": "Minutes",
+  "reb": "Total Rebounds",
+  "oreb": "Offensive Rebounds",
+  "dreb": "Defensive Rebounds",
+  "ast": "Assists",
+  "stl": "Steals",
+  "blk": "Blocks",
+  "fgm": "Field Goals Made",
+  "fga": "Field Goals Attempted",
+  "fg_pct": "Field Goal Percentage",
+  "fg3m": "Three Pointers Made",
+  "fg3a": "Three Pointers Attempted",
+  "fg3_pct": "3 Point Perctange",
+  "ftm": "Free Throws Made",
+  "fta": "Free Throws Attempted",
+  "ft_pct": "Free Throw Percentage",
+  "turnover": "Turnovers",
+  "pf": "Fouls",
+};
