@@ -55,8 +55,8 @@
 										class="text-center whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900"
 										>{player.first_name} {player.last_name}</td>
 									<td class="text-center whitespace-nowrap px-2 py-2 text-sm text-gray-500"
-										>{player.seasonStats.games_played}</td>
-									<StatsTableRow stats={player.seasonStats} />
+										>{player.seasonAverages.games_played}</td>
+									<StatsTableRow stats={player.seasonAverages} />
 								</tr>
 							{/each}
 						</tbody>
