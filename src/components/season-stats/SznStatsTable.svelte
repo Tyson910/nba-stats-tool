@@ -1,6 +1,7 @@
 <script lang="ts">
 	import StatsTableRow from "@components/StatsTableRow.svelte";
 	import type { SelectedPlayer } from "@local-types/ball-dont-lie";
+	import { is1stHalfOfSeason } from "@utils/ball-dont-lie-api";
 	export let selectedPlayers: SelectedPlayer[] = [];
 	const tableHeaders = [
 		"Player",
@@ -23,7 +24,11 @@
 		"Fantasy Points",
 	];
 	const today = new Date();
-	$: yearString = `${today.getFullYear()}-${today.getFullYear() + 1 - 2000}`;
+	$: yearString = is1stHalfOfSeason()
+		? // in Dec 2022 will read: 2022-23
+		  `${today.getFullYear()}-${today.getFullYear() + 1 - 2000}`
+		: // in Feb 2023 will read: 2022-23
+		  `${today.getFullYear() - 1}-${today.getFullYear() - 2000}`;
 </script>
 
 <div class="">
