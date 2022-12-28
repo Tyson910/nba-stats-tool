@@ -1,7 +1,7 @@
 <script lang="ts">
 	import StatsTableRow from "@components/StatsTableRow.svelte";
-	import type { PlayerWithSeasonAverage } from "@local-types/ball-dont-lie";
-	export let selectedPlayers: PlayerWithSeasonAverage[] = [];
+	import type { SelectedPlayer } from "@local-types/ball-dont-lie";
+	export let selectedPlayers: SelectedPlayer[] = [];
 	const tableHeaders = [
 		"Player",
 		"Games",

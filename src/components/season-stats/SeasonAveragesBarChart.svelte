@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { PlayerWithSeasonAverage } from "@local-types/ball-dont-lie";
+	import type { SelectedPlayer } from "@local-types/ball-dont-lie";
 	import { onMount } from "svelte";
 	import { teamPrimaryColorRGB } from "@utils/team-colors";
 	import { Chart } from "chart.js/auto";
 	import type { ChartConfiguration } from "chart.js";
 	import { validGraphFields } from "@utils/ball-dont-lie-api";
 
-	export let selectedPlayers: PlayerWithSeasonAverage[] = [];
+	export let selectedPlayers: SelectedPlayer[] = [];
 	let ctx: HTMLCanvasElement | null;
 	let myChart: Chart<"bar", any[], string>;
 
