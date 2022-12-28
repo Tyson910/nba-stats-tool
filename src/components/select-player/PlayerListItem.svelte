@@ -5,6 +5,8 @@
 	export let player: Player;
 	export let disabled: boolean = false;
 	$: fullName = player?.first_name + " " + player?.last_name;
+	/** RGB Value of team color */
+	$: teamColorString = teamPrimaryColorRGB[player.team.abbreviation];
 </script>
 
 <li class="flex items-center justify-between space-x-3 py-4">
