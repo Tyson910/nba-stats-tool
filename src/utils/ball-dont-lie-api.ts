@@ -46,15 +46,19 @@ export async function getPlayerSeasonAverages(
   }
 }
 
-export async function getLast10GameStats(
+export async function getAllGameStatsForSeason(
   playerID: Player["id"],
 ): Promise<PlayerGameStat[]> {
   const API =
-    "https://www.balldontlie.io/api/v1/stats?per_page=10&player_ids[]=";
+    `https://www.balldontlie.io/api/v1/stats?seasons[]=2022&per_page=82&player_ids[]=`;
   try {
     const response = await fetch(API + playerID);
     const { data }: APIResponse<PlayerGameStat> = await response.json();
-    return data;
+
+    // sorting with latest date
+    return [...data].sort((a, b) =>
+      Date.parse(a.game.date) - Date.parse(b.game.date)
+    );
   } catch (err) {
     console.log(err);
     return [];
