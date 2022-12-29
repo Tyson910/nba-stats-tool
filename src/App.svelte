@@ -21,9 +21,9 @@
 	$: selectedPlayersIDs = selectedPlayers.map(({ id }) => id);
 </script>
 
-<main class="mx-auto max-w-screen-xl pb-20">
+<main class="px-5 py-16 lg:py-20 mx-auto max-w-screen-xl ">
 	<Intro />
-	<div class="flex flex-row gap-x-4 my-5 capitalize">
+	<div class="flex flex-row flex-wrap gap-y-6 gap-x-4 my-10 md:my-5 capitalize">
 		{#each selectedPlayers as player (player.id)}
 			{@const fullName = player?.first_name + " " + player?.last_name}
 			<Tag on:click={() => removePlayerFromSelectedPlayers(player.id)}>{fullName}</Tag>

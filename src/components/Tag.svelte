@@ -1,5 +1,5 @@
 <span
-	class="inline-flex items-center rounded-full bg-indigo-100 py-2 pl-4 pr-3 text-sm font-medium text-indigo-700">
+	class="inline-flex w-max md:w-auto items-center rounded-full bg-indigo-100 py-2 pl-4 pr-3 text-sm font-medium text-indigo-700">
 	<slot />
 	<button
 		on:click

@@ -40,9 +40,9 @@
 	</div>
 	<div class="mt-8 flex flex-col">
 		<div>
-			<div class="inline-block py-2 md:px-6 lg:px-8">
+			<div class="lg:inline-block py-2 md:px-6 lg:px-8">
 				<div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-					<table class=" divide-y divide-gray-300">
+					<table class="max-w-full block divide-y divide-gray-300 overflow-x-scroll">
 						<thead class="bg-gray-100">
 							<tr class="divide-x divide-gray-200">
 								{#each tableHeaders as tableHeader (tableHeader)}
