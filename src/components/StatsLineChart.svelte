@@ -75,7 +75,7 @@
 		on:change={(evt) => (filteredField = evt.target.value)}
 		class="mt-1 capitalize w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500">
 		{#each Object.keys(validGraphFields) as field}
-			{#if field != "player_id" && field != "season"}
+			{#if field != "player_id" && field != "season" && field != "games_played"}
 				<option
 					selected={field == "pts"}
 					value={field}>{validGraphFields[field]}</option>
