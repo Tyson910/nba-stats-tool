@@ -16,7 +16,7 @@
 	onMount(() => {
 		ctx = document.querySelector("canvas");
 		if (!ctx) throw new Error("Can't find chart element");
-		const chartOptions: ChartConfiguration<"line", any[], string> = {
+		const chartConfig: ChartConfiguration<"line", any[], string> = {
 			type: "line",
 			data: {
 				datasets: selectedPlayers.map((player) => ({
@@ -44,7 +44,8 @@
 			},
 		};
 
-		myChart = new Chart(ctx, chartOptions);
+		myChart = new Chart(ctx, chartConfig);
+
 		return () => myChart.destroy();
 	});
 
