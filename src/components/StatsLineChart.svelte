@@ -72,7 +72,7 @@
 	<select
 		id="filter-field"
 		name="filter-field"
-		on:change={(evt) => (filteredField = evt.target.value)}
+		on:change={(evt) => (filteredField = evt?.target?.value)}
 		class="mt-1 capitalize w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500">
 		{#each Object.keys(validGraphFields) as field}
 			{#if field != "player_id" && field != "season" && field != "games_played"}
