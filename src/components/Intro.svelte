@@ -17,8 +17,6 @@
 	<ol>
 		<li>Search and select up to 5 players</li>
 		<li>Browse through each players season averages</li>
-		<li>Select a date range</li>
-		<li>Browse through each players stats through each game in chosen date range</li>
 		<li>Compare players stats visually by using the graph</li>
 	</ol>
 </div>
