@@ -1,7 +1,7 @@
 <div
 	id="intro"
 	class="prose max-w-screen-xl mx-auto">
-	<h1>Hello welcome to my NBA fantasy stats tool</h1>
+	<h1 class="capitalize">Welcome to my NBA fantasy stats tool</h1>
 	<p>
 		This app was made possible with the balldontlie API created by <a
 			href="https://www.github.com/ynnadkrap"
