@@ -16,6 +16,7 @@
 	onMount(() => {
 		ctx = document.querySelector("canvas");
 		if (!ctx) throw new Error("Can't find chart element");
+		// TODO: if user clicks on line/legend increase brightness
 		const chartConfig: ChartConfiguration<"line", any[], string> = {
 			type: "line",
 			data: {
