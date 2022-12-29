@@ -116,7 +116,7 @@ export const validGraphFields = {
   "fg_pct": "Field Goal Percentage",
   "fg3m": "Three Pointers Made",
   "fg3a": "Three Pointers Attempted",
-  "fg3_pct": "3 Point Perctange",
+  "fg3_pct": "3 Point Percentange",
   "ftm": "Free Throws Made",
   "fta": "Free Throws Attempted",
   "ft_pct": "Free Throw Percentage",
