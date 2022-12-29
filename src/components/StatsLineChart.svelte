@@ -11,7 +11,7 @@
 
 	let ctx: HTMLCanvasElement | null;
 	let myChart: Chart<"line", any[], string>;
-	const color: string[] = ["gold", "magenta", "green", "blue",  "black"];
+	// const color: string[] = ["gold", "magenta", "green", "blue", "black"];
 
 	onMount(() => {
 		ctx = document.querySelector("canvas");
