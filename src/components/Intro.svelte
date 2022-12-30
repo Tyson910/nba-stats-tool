@@ -5,7 +5,7 @@
 <div
 	id="intro"
 	class="prose max-w-screen-xl mx-auto">
-	<h1>Hello welcome to my NBA fantasy stats tool</h1>
+	<h1 class="capitalize">Welcome to my NBA fantasy stats tool</h1>
 	<div class="group">
 		<a
 			href="https://github.com/Tyson910/nba-stats-tool"
