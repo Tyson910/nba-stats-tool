@@ -5,14 +5,14 @@
 <div
 	id="intro"
 	class="prose max-w-screen-xl mx-auto">
-	<h1 class="capitalize">Welcome to my NBA fantasy stats tool</h1>
-	<div class="group">
+	<div class="flex flex-col items-center mb-20">
+		<h1 class="capitalize">Welcome to my NBA fantasy stats tool</h1>
 		<a
 			href="https://github.com/Tyson910/nba-stats-tool"
 			target="_blank"
 			rel="noreferrer nooopener"
-			class="flex flex-row items-center gap-x-2 no-underline  group-hover:underline"
-			>Source Code <GithubIcon svgClasses="group-hover:text-gray-500" /></a>
+			class="-mt-3 flex flex-row items-center hover:text-gray-400 gap-x-2 no-underline  group-hover:underline"
+			>Source Code <GithubIcon /></a>
 	</div>
 	<p>Fantasy scoring on this site are based on ESPN's old scoring style calculated as follows:</p>
 	<p>
