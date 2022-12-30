@@ -4,7 +4,7 @@
 </script>
 
 <svg
-	class={classnames("w-5 h-5 text-gray-400 hover:text-gray-500", svgClasses)}
+	class={classnames("w-5 h-5", svgClasses)}
 	fill="currentColor"
 	viewBox="0 0 24 24"
 	aria-hidden="true">
