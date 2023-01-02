@@ -7,13 +7,10 @@
 	import { validGraphFields } from "@utils/ball-dont-lie-api";
 
 	export let selectedPlayers: SelectedPlayer[] = [];
-	let ctx: HTMLCanvasElement | null;
+	let ctx: HTMLCanvasElement;
 	let myChart: Chart<"bar", any[], string>;
 
 	onMount(() => {
-		ctx = document.querySelector("canvas");
-		if (!ctx) throw new Error("Can't find chart element");
-
 		const chartOptions: ChartConfiguration<"bar", any[], string> = {
 			type: "bar",
 			data: {
@@ -65,7 +62,7 @@
 	<select
 		id="filter-field"
 		name="filter-field"
-		on:change={(evt) => (filteredField = evt.target.value)}
+		bind:value={filteredField}
 		class="mt-1 capitalize w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500">
 		{#each Object.keys(validGraphFields) as field}
 			{#if field != "player_id" && field != "season"}
@@ -77,4 +74,6 @@
 	</select>
 </div>
 
-<canvas id="season-stats-chart" />
+<canvas
+	id="season-stats-chart"
+	bind:this={ctx} />

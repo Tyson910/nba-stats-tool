@@ -9,13 +9,11 @@
 	export let selectedPlayers: SelectedPlayer[] = [];
 	export let selectedTab: "allGameStatsForSeason" | "last10GameStats";
 
-	let ctx: HTMLCanvasElement | null;
+	let ctx: HTMLCanvasElement;
 	let myChart: Chart<"line", any[], string>;
 	// const color: string[] = ["gold", "magenta", "green", "blue", "black"];
 
 	onMount(() => {
-		ctx = document.querySelector("canvas");
-		if (!ctx) throw new Error("Can't find chart element");
 		// TODO: if user clicks on line/legend increase brightness
 		const chartConfig: ChartConfiguration<"line", any[], string> = {
 			type: "line",
@@ -73,7 +71,7 @@
 	<select
 		id="filter-field"
 		name="filter-field"
-		on:change={(evt) => (filteredField = evt?.target?.value)}
+		bind:value={filteredField}
 		class="mt-1 capitalize w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500">
 		{#each Object.keys(validGraphFields) as field}
 			{#if field != "player_id" && field != "season" && field != "games_played"}
@@ -85,4 +83,6 @@
 	</select>
 </div>
 
-<canvas id="season-stats-chart" />
+<canvas
+	id="season-stats-chart"
+	bind:this={ctx} />
