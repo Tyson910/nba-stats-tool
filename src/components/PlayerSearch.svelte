@@ -1,21 +1,28 @@
 <script lang="ts">
-	import type { Player } from "@local-types/ball-dont-lie";
+	import { derived, type Writable } from "svelte/store";
 	import { getContext } from "svelte";
-	const { addPlayerToSelectedPlayers } = getContext("selectedPlayers");
-	import { getAllGameStatsForSeason, getPlayerSeasonAverages, searchPlayerName } from "@utils/ball-dont-lie-api";
+	import type { Player, SelectedPlayer } from "@local-types/ball-dont-lie";
+	import {
+		getAllGameStatsForSeason,
+		getPlayerSeasonAverages,
+		searchPlayerName,
+	} from "@utils/ball-dont-lie-api";
 	import PlayerListItem from "@components/select-player/PlayerListItem.svelte";
 	import EmptyState from "@components/select-player/EmptyState.svelte";
 	import Spinner from "@components/icons/Spinner.svelte";
 
-	export let selectedPlayersIDs: Player["id"][] = [];
-
 	let userSearchInput = "";
 	let playerSearchErrorMessage = "";
-	let loading: boolean = false;
+	let isLoading = false;
 	let playerSearchResults: Player[] = [];
 
+	const selectedPlayers: Writable<SelectedPlayer[]> = getContext("selectedPlayers");
+	const selectedPlayersIDs = derived(selectedPlayers, ($selectedPlayers) =>
+		$selectedPlayers.map(({ id }) => id)
+	);
+
 	async function handlePlayerSearchSubmit(evt: SubmitEvent) {
-		loading = true;
+		isLoading = true;
 		if (!userSearchInput) {
 			playerSearchErrorMessage = "Please enter a valid name";
 			return;
@@ -31,7 +38,7 @@
 			console.log(err);
 			playerSearchErrorMessage = `An Error occured "${err.message}". Please try again later`;
 		} finally {
-			loading = false;
+			isLoading = false;
 		}
 	}
 
@@ -55,12 +62,16 @@
 				allGameStatsForSeason.length
 			);
 
-			addPlayerToSelectedPlayers({
-				...player,
-				seasonAverages,
-				allGameStatsForSeason,
-				last10GameStats,
-			});
+			// add to selected players
+			$selectedPlayers = [
+				...$selectedPlayers,
+				{
+					...player,
+					seasonAverages,
+					allGameStatsForSeason,
+					last10GameStats,
+				},
+			];
 		} catch (err) {
 			console.log(err);
 			return;
@@ -92,18 +103,18 @@
 	<button
 		class="bg-indigo-600 text-green-50 w-max self-end py-2 px-3 rounded-lg inline-flex items-center"
 		type="submit"
-		class:animate-pulse={loading}
+		class:animate-pulse={isLoading}
 		>Search
-		{#if loading}
+		{#if isLoading}
 			<Spinner />
 		{/if}
 	</button>
 </form>
-<section class="max-w-lgmx-auto my-4">
+<section class="my-4">
 	{#each playerSearchResults as player (player.id)}
 		<PlayerListItem
 			{player}
-			disabled={selectedPlayersIDs.includes(player.id) || selectedPlayersIDs.length > 4}
+			disabled={$selectedPlayersIDs.includes(player.id) || $selectedPlayersIDs.length > 4}
 			on:click={() => handleAddBtnClick(player.id)} />
 	{:else}
 		<EmptyState />
