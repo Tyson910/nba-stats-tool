@@ -35,7 +35,13 @@ export async function searchPlayerName(name: string): Promise<Player[]> {
 export async function getPlayerSeasonAverages(
   playerID: Player["id"],
 ): Promise<PlayerSeasonAverage | null> {
-  const API = "https://www.balldontlie.io/api/v1/season_averages?player_ids[]=";
+  const today = new Date();
+  const seasonStr = is1stHalfOfSeason()
+    ? today.getFullYear()
+    : today.getFullYear() - 1;
+
+  const API =
+    `https://www.balldontlie.io/api/v1/season_averages?season=${seasonStr}&player_ids[]=`;
   try {
     const response = await fetch(API + playerID);
     const { data }: APIResponse<PlayerSeasonAverage> = await response.json();
@@ -100,6 +106,7 @@ export function is1stHalfOfSeason(): boolean {
   const today = new Date();
   return today.getMonth() > 9;
 }
+
 export const validGraphFields = {
   "games_played": "Games Played",
   "season": "Season",
