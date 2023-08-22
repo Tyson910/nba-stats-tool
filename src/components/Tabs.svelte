@@ -1,12 +1,13 @@
 <script lang="ts">
-	import type { SelectedPlayer } from "@local-types/ball-dont-lie";
+	import { getSelectedPlayers } from "@utils/context";
 	import SeasonAveragesTable from "@components/season-stats/SznStatsTable.svelte";
 	import SeasonAveragesGraph from "@components/season-stats/SeasonAveragesBarChart.svelte";
 	import StatsLineChart from "@components/StatsLineChart.svelte";
 
 	type ValidTabOptions = "Season Averages" | "Last 10 Games Played" | "All Games From Season";
 
-	export let selectedPlayers: SelectedPlayer[] = [];
+	const selectedPlayersStore = getSelectedPlayers();
+	$: selectedPlayers = $selectedPlayersStore;
 
 	const options: ValidTabOptions[] = [
 		"Season Averages",

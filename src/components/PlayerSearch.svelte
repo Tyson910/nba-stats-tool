@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { derived, type Writable } from "svelte/store";
-	import { getContext } from "svelte";
-	import type { Player, SelectedPlayer } from "@local-types/ball-dont-lie";
+	import { derived } from "svelte/store";
+	import type { Player } from "@local-types/ball-dont-lie";
+	import { getSelectedPlayers } from "@utils/context";
 	import {
 		getAllGameStatsForSeason,
 		getPlayerSeasonAverages,
@@ -16,7 +16,7 @@
 	let isLoading = false;
 	let playerSearchResults: Player[] = [];
 
-	const selectedPlayers: Writable<SelectedPlayer[]> = getContext("selectedPlayers");
+	const selectedPlayers = getSelectedPlayers();
 	const selectedPlayersIDs = derived(selectedPlayers, ($selectedPlayers) =>
 		$selectedPlayers.map(({ id }) => id)
 	);
